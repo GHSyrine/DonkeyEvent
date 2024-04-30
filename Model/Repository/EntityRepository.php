@@ -27,6 +27,7 @@ class EntityRepository {
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_CLASS, $table::class);
     }
+
     public function UpdateTable($table, $columns, $filtre){
     $query = "UPDATE $table SET $columns WHERE $filtre";
     $statement =$this->pdo->prepare($query);
@@ -36,4 +37,5 @@ class EntityRepository {
     $statement ->execute();
     return $statement;
     }
+
 }
