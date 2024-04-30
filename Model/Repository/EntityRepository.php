@@ -34,6 +34,12 @@ class EntityRepository {
     $statement ->bindValue(":columns", $columns);
     $statement ->bindValue(":filtre", $filtre);
     $statement ->execute();
-    return $statement;
+    }
+    public function deleteFromTable($table, $filtre){
+        $query = "DELETE FROM $table WHERE $filtre"; 
+        $statement =$this ->pdo ->prepare($query);
+        $statement ->bindValue(":table", $table);
+        $statement ->bindValue (":filre", $filtre);
+        $statement ->execute();
     }
 }
