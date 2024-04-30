@@ -92,4 +92,46 @@ class EntityRepository
         $statement->execute();
     }
 
+    /**
+     * @param array $tables exemple : ["cinema", "movie"]
+     * @param array $foreignKeys exemple : ["cinema.id = movie.cinema_id"]
+     * @param string $columns exemple : "cinema.name, movie.title"
+     * @param string $filtre exemple : "cinema.id = 1"
+     * @return array exemple : [0 => Cinema, 1 => Movie, 2 => Movie
+     */
+
+    public function getByFiltreJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre) : array
+    {
+        // récuperer les colonnes de la première table
+        $query = "SELECT :columns FROM :tables[0]";
+
+        // boucler sur les tables d'après pour les joindre
+        for ($i = 1; $i < count($tables); $i++) {
+            $query .= " JOIN :tables[$i] ON :foreignKeys[$i]";
+        }
+
+        // ajouter le filtre
+        $query .= " WHERE :filtre";
+
+        $statement = $this->pdo->prepare($query);
+        $statement->bindValue(":columns", $columns);
+
+        // boucler sur les tables pour les lier
+        for ($i = 0; $i < count($tables); $i++) {
+            $statement->bindValue(":tables[$i]", $tables[$i]);
+        }
+
+        // boucler sur les foreignKeys pour les lier
+        for ($i = 1; $i < count($tables); $i++) {
+            $statement->bindValue(":foreignKeys[$i]", $foreignKeys[$i]);
+        }
+
+        // lier le filtre
+        $statement->bindValue(":filtre", $filtre);
+        $statement->execute();
+
+        // retourner les résultats
+        return $statement->fetchAll(PDO::FETCH_CLASS, $tables[0]::class);
+    }
+
 }
