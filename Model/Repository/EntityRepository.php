@@ -93,7 +93,7 @@ class EntityRepository
      * @return array exemple : [0 => Cinema, 1 => Movie, 2 => Movie
      */
 
-    protected function getByFiltreJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre): array
+    protected function getByFilterJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre): array
     {
         // Construction de la requête pour sélectionner les colonnes de la première table
         $query = "SELECT $columns FROM {$tables[0]}";
