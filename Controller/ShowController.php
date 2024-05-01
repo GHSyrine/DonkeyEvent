@@ -10,5 +10,5 @@ class ShowController extends Controller {
         $showRepository = new ShowRepository();
         parent::__construct($showRepository);
     }
-    
+
 }
