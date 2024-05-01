@@ -2,7 +2,7 @@
 
 class EntityRepository
 {
-    protected PDO $pdo;
+    protected PDO|null $pdo;
     protected string $table;
 
     public function __construct(PDO|null $pdo, string $table)
@@ -93,30 +93,30 @@ class EntityRepository
      * @return array exemple : [0 => Cinema, 1 => Movie, 2 => Movie
      */
 
-    public function getByFiltreJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre = "") : array
+    public function getByFiltreJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre): array
     {
         // Construction de la requête pour sélectionner les colonnes de la première table
         $query = "SELECT $columns FROM {$tables[0]}";
-
+    
         // Boucle sur les tables suivantes pour les joindre
         for ($i = 1; $i < count($tables); $i++) {
             if(!empty($foreignKeys[$i-1])){
                 $query .= " INNER JOIN {$tables[$i]} ON {$foreignKeys[$i-1]}";
             }
         }
-
+    
         // Ajouter le filtre
         if($filtre !== ''){
             $query .= " WHERE $filtre";
         }
         // Préparation de la requête
         $statement = $this->pdo->prepare($query);
-
+  
         // Exécution de la requête avec les valeurs liées
         $statement->execute();
         // Retourner les résultats
         return $statement->fetchAll(PDO::FETCH_CLASS, ucfirst($tables[0]));
     }
+    
 
 }
-
