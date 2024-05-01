@@ -6,7 +6,6 @@ class ShowRepository extends EntityRepository
 {
     public function __construct(PDO $pdo = null)
     {
-        //
         parent::__construct($pdo, "show");
     }
 }
