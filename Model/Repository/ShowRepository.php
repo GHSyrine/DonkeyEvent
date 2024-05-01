@@ -2,11 +2,11 @@
 
 require_once "EntityRepository.php";
 
-class CinemaRepository extends EntityRepository
+class ShowRepository extends EntityRepository
 {
     public function __construct(PDO $pdo = null)
     {
         //
-        parent::__construct($pdo, "cinema");
+        parent::__construct($pdo, "show");
     }
 }
