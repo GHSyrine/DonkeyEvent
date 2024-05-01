@@ -1,11 +1,13 @@
 <?php
-
+// Todo à revoir
+require_once "../Model/Entity/Movie.php";
+require_once "../Model/Entity/Category.php";
 abstract class EntityRepository
 {
-    protected PDO $pdo;
+    protected PDO|null $pdo;
     protected string $table;
 
-    public function __construct(PDO $pdo, string $table)
+    public function __construct(PDO|null $pdo, string $table)
     {
 
         if ($pdo) {
@@ -100,11 +102,13 @@ abstract class EntityRepository
 
         // boucler sur les tables d'après pour les joindre
         for ($i = 1; $i < count($tables); $i++) {
-            $query .= " JOIN :tables[$i] ON :foreignKeys[$i]";
+            $query .= " JOIN :tables[$i] ON :foreignKeys[$i-1]";
         }
 
         // ajouter le filtre
-        $query .= " WHERE :filtre";
+        if($filtre !== ''){
+         $query .= " WHERE :filtre";
+        }
 
         $statement = $this->pdo->prepare($query);
         $statement->bindValue(":columns", $columns);
@@ -115,7 +119,7 @@ abstract class EntityRepository
         }
 
         // boucler sur les foreignKeys pour les lier
-        for ($i = 1; $i < count($tables); $i++) {
+        for ($i = 0; $i < count($tables)-1; $i++) {
             $statement->bindValue(":foreignKeys[$i]", $foreignKeys[$i]);
         }
 
@@ -127,5 +131,32 @@ abstract class EntityRepository
         $this->table = ucfirst($this->table);
         return $statement->fetchAll(PDO::FETCH_CLASS, $tables[0]::class);
     }
+
+    // Todo à revoir
+    public function getByFiltreJoinTables2(array $tables, array $foreignKeys, string $columns, string $filtre): array
+    {
+        // Construction de la requête pour sélectionner les colonnes de la première table
+        $query = "SELECT $columns FROM {$tables[0]}";
+    
+        // Boucle sur les tables suivantes pour les joindre
+        for ($i = 1; $i < count($tables); $i++) {
+            if(!empty($foreignKeys[$i-1])){
+                $query .= " INNER JOIN {$tables[$i]} ON {$foreignKeys[$i-1]}";
+            }
+        }
+    
+        // Ajouter le filtre
+        if($filtre !== ''){
+            $query .= " WHERE $filtre";
+        }
+        // Préparation de la requête
+        $statement = $this->pdo->prepare($query);
+  
+        // Exécution de la requête avec les valeurs liées
+        $statement->execute();
+        // Retourner les résultats
+        return $statement->fetchAll(PDO::FETCH_CLASS, ucfirst($tables[0]));
+    }
+    
 
 }

@@ -6,7 +6,6 @@ class Category extends Entity{
     private string $name;
     private array $movies =[];
 
- 
     public function getName()
     {
         return $this->name;
