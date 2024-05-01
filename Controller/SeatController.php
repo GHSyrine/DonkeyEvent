@@ -1,7 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once '../Model/Repository/SeatRepository.php';
-class SeatRepository extends Controller{
+class Seatcontroller extends Controller{
     public function __construct()
     {
         $seatRepository = new SeatRepository();
