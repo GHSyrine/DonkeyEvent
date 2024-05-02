@@ -19,7 +19,7 @@ class Controller {
      * @return array exemple : [0 => Cinema, 1 => Cinema, 2 => Cinema]
      */
 
-    public function getAll() {
+    public function all() {
         $data = $this->entityRepository->getAll();
         $this->view('', $data);
     }
@@ -29,7 +29,7 @@ class Controller {
      * @return object exemple : Cinema {id: 1, name: "Cinema 1", address: "1 rue de Paris"}
      */
 
-    public function getById(int $id) {
+    public function one(int $id) {
         $data = $this->entityRepository->getById($id);
         $this->view('', $data);
     }
@@ -40,7 +40,7 @@ class Controller {
      * @return void
      */
 
-    public function updateTable(string $columns, string $filtre) {
+    public function update(string $columns, string $filtre) {
         $this->entityRepository->updateTable($columns, $filtre);
     }
 
@@ -49,7 +49,7 @@ class Controller {
      * @return void
      */
 
-    public function deleteFromTable(string $filtre) {
+    public function delete(string $filtre) {
         $this->entityRepository->deleteFromTable($filtre);
     }
 
@@ -59,7 +59,7 @@ class Controller {
      * @return void
      */
 
-    public function insertIntoTable(string $columns, string $values) {
+    public function insert(string $columns, string $values) {
         $this->entityRepository->insertIntoTable($columns, $values);
     }
 
