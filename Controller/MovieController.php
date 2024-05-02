@@ -15,7 +15,13 @@ class MovieController extends Controller {
     }
 
     public function getMoviesByCategory($view, $filters = []){
-        $data = $this->movieRepository->getMoviesByCategoryId($filters['id']);
-        $this->getView($view, $data);
+        $movies = $this->movieRepository->getMoviesByCategoryId($filters['id']);
+        $this->getView($view, $movies);
     }
+
+    public function getMovie($view, $id){
+        $movie = $this->movieRepository->getById($id);
+        $this->getView($view, $movie);
+    }
+
 }
