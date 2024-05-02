@@ -17,5 +17,11 @@ class MovieRepository extends EntityRepository
         return $movies;
     }
 
+    public function getShowsByMovie($id){
+        $tables = ["movie","show"];
+        $foreignKeys = ['movie.id = show.movie_id'];
+        $shows = $this->getByFilterJoinTables($tables, $foreignKeys, "*","movie.id = $id");
+        return $shows;
+    }
 
 }
