@@ -5,7 +5,9 @@ require_once 'Controller/MovieController.php';
 
 // Movies list by category {id}
 $movieController = new MovieController();
-$movieController->view('movies', ['category' => 2]);
+$movieController->getMoviesByCategory(2);
+$movieController->getMovie(2);
+
 
 
 
