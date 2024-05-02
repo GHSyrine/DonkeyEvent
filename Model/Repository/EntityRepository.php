@@ -36,10 +36,12 @@ class EntityRepository
     public function getById(int $id) : object
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id = :id");
-        $statement->bindParam(":id", $id);
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
         $statement->execute();
+
         $this->table = ucfirst($this->table);
-        return $statement->fetch(PDO::FETCH_CLASS, $this->table);
+        $statement->setFetchMode(PDO::FETCH_CLASS, $this->table);
+        return $statement->fetch();
     }
 
     /**
