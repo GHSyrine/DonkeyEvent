@@ -1,27 +1,29 @@
 <?php
 
-require_once '../Model/Repository/EntityRepository.php';
+require_once '../DonkeyEvent/Model/Repository/EntityRepository.php';
 
 class Controller {
 
-    protected EntityRepository $entityRepository;
+    public $ALLOWED_METHODS = ["all"];
 
-    public function __construct(EntityRepository $entityRepository)
+    protected EntityRepository|null $entityRepository;
+
+    public function __construct(EntityRepository|null $entityRepository)
     {
         $this->entityRepository = $entityRepository;
     }
 
-    public function view($view, $data = []) {
-        require_once '../Template/' . $view . '.html.php';
+    public function getView($view, $data = []) {
+        require_once "../DonkeyEvent/Template/".$view.".html.php";
     }
 
     /**
      * @return array exemple : [0 => Cinema, 1 => Cinema, 2 => Cinema]
      */
 
-    public function getAll() {
+    public function all() {
         $data = $this->entityRepository->getAll();
-        $this->view('', $data);
+        return $data;
     }
 
     /**
@@ -29,9 +31,9 @@ class Controller {
      * @return object exemple : Cinema {id: 1, name: "Cinema 1", address: "1 rue de Paris"}
      */
 
-    public function getById(int $id) {
+    public function one(int $id) {
         $data = $this->entityRepository->getById($id);
-        $this->view('', $data);
+        return $data;
     }
 
     /**
@@ -40,7 +42,7 @@ class Controller {
      * @return void
      */
 
-    public function updateTable(string $columns, string $filtre) {
+    public function update(string $columns, string $filtre) {
         $this->entityRepository->updateTable($columns, $filtre);
     }
 
@@ -49,7 +51,7 @@ class Controller {
      * @return void
      */
 
-    public function deleteFromTable(string $filtre) {
+    public function delete(string $filtre) {
         $this->entityRepository->deleteFromTable($filtre);
     }
 
@@ -59,7 +61,7 @@ class Controller {
      * @return void
      */
 
-    public function insertIntoTable(string $columns, string $values) {
+    public function insert(string $columns, string $values) {
         $this->entityRepository->insertIntoTable($columns, $values);
     }
 

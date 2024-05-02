@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once '../Model/Repository/MovieRepository.php';
+require_once '../DonkeyEvent/Model/Repository/MovieRepository.php';
 
 class MovieController extends Controller {
 
@@ -16,6 +16,6 @@ class MovieController extends Controller {
 
     public function getMoviesByCategory($view, $filters = []){
         $data = $this->movieRepository->getMoviesByCategoryId($filters['id']);
-        $this->view($view, $data);
+        $this->getView($view, $data);
     }
 }

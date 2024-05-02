@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once '../Model/Repository/UserRepository.php';
+require_once '../DonkeyEvent/Model/Repository/UserRepository.php';
 
 Class UserController extends Controller{
 

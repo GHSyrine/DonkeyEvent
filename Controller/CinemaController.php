@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once '../Model/Repository/CinemaRepository.php';
+require_once '../DonkeyEvent/Model/Repository/CinemaRepository.php';
 
 class CinemaController extends Controller {
 
