@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Model/Entity/Movie.php';
-
 class EntityRepository
 {
     protected PDO|null $pdo;
