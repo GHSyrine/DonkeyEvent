@@ -1,7 +1,9 @@
 <?php
 include '../Template/header.html.php';
 ?>
-<h1>Welcome to DonkeyCinema </h1>
+
+<h1>Welcome to Pathy</h1>
+
 <?php
 include '../Template/footer.html.php';
 ?>
