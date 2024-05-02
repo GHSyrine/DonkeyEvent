@@ -12,7 +12,9 @@ class MovieRepository extends EntityRepository
     public function getMoviesByCategoryId($id){
         $tables = ["movie", "movie_category", "category", "movie_category"];
         $foreignKeys = ['movie.id = movie_category.movie_id', 'category.id = movie_category.category_id'];
-        $movies = $this->getByFiltreJoinTables($tables, $foreignKeys, "movie.name", "category.id = $id");
+        $movies = $this->getByFilterJoinTables($tables, $foreignKeys, "movie.name", "category.id = $id");
         return $movies;
     }
+
+
 }

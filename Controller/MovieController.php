@@ -1,24 +1,21 @@
 <?php
 
 require_once 'Controller.php';
-require_once 'Model/Repository/MovieRepository.php';
+require_once '../Model/Repository/MovieRepository.php';
 
 class MovieController extends Controller {
 
-    private $movieRepository;
+    protected MovieRepository $movieRepository;
 
     public function __construct()
     {
-        $this->movieRepository = new MovieRepository();
-        parent::__construct($this->movieRepository);
+        $movieRepository = new MovieRepository();
+        parent::__construct($movieRepository);
+        $this->movieRepository = $movieRepository;
     }
 
-    public function view($view, $filters = []){
-        if(array_key_exists('category', $filters)){
-            $movies = $this->movieRepository->getMoviesByCategoryId($filters["category"]);
-        } else {
-            $movies = $this->movieRepository->getAll();
-        }
-        parent::view($view, $movies);
+    public function getMoviesByCategory($view, $filters = []){
+        $data = $this->movieRepository->getMoviesByCategoryId($filters['id']);
+        $this->view($view, $data);
     }
 }
