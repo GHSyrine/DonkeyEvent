@@ -1,0 +1,10 @@
+<?php 
+include '..DonkeyEvent/Template/header.html.php';
+?>
+<h1><?=$data->getName()?></h1>
+<p>
+   <span>  L'adresse du cinema: <?=$data->getAddress()??""?></span> 
+</p>
+<?php
+include '..DonkeyEvent/Template/footer.html.php'
+?>
