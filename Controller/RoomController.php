@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once '../Model/Repository/RoomRepository.php';
+require_once '../DonkeyEvent/Model/Repository/RoomRepository.php';
 
 class RoomController extends Controller {
 

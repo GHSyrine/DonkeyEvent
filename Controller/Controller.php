@@ -14,8 +14,6 @@ class Controller {
     }
 
     public function getView($view, $data = []) {
-        var_dump("test",$view);
-        die();
         require_once "../DonkeyEvent/Template/".$view.".html.php";
     }
 
@@ -25,7 +23,7 @@ class Controller {
 
     public function all() {
         $data = $this->entityRepository->getAll();
-        $this->getView('', $data);
+        return $data;
     }
 
     /**
@@ -35,7 +33,7 @@ class Controller {
 
     public function one(int $id) {
         $data = $this->entityRepository->getById($id);
-        $this->getView('', $data);
+        return $data;
     }
 
     /**

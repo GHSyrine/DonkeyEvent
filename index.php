@@ -54,11 +54,6 @@ class App
         // Récuperer le controller associé à l'URL
         $this->URL = $this->getURL();
         $this->params = $this->getParams();
-        if (!empty($this->params)) {
-            $view = $this->URL[0] . $this->params[0];
-        } else {
-            $view = $this->URL[0];
-        }
         $controller = ucfirst($this->URL[0]) . 'Controller.php';
 
         // Si le controller existe, instancier le controller
@@ -67,10 +62,25 @@ class App
             $this->controller = new (ucfirst($this->URL[0]) . 'Controller');
 
             // Si la méthode dans les paramètres existe, garder la méthode, sinon garder la méthode par défaut
-            if (!empty($this->params[1] || in_array($this->params[1], $this->controller->ALLOWED_METHODS))){
-                $this->method = $this->params[1];
+            if (!empty($this->params[0] && !in_array($this->params[0], $this->controller->ALLOWED_METHODS))){
+                $this->URL[0] = 'notFound';
+                $this->controller = "test";
+                header('location: /notFound');
+                return;
             } else {
                 $this->method = 'all';
+                $this->params[0] = 'all';
+            }
+
+            // Si des paramètres existent, garder la vue associée au controller et aux paramètres
+            if (!empty($this->params)) {
+                $view = $this->URL[0] . $this->params[0];
+            } else {
+                $view = $this->URL[0];
+            }
+
+            if ($this->URL[0] == 'notFound') {
+                $view = $this->URL[0];
             }
 
             // Si l'URL est "NotFound" alors afficher la vue NotFound
@@ -78,7 +88,6 @@ class App
                 $this->controller->getView($view, []);
                 return;
             }
-            $view = $this->URL[0];
             // Afficher la vue associée au controller
             $this->controller->getView($view, $this->controller->{$this->method}());
             

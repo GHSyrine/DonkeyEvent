@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once '../Model/Repository/ShowRepository.php';
+require_once '../DonkeyEvent/Model/Repository/ShowRepository.php';
 
 class ShowController extends Controller {
 

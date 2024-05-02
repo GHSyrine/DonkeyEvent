@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once '../Model/Repository/SeatRepository.php';
+require_once '../DonkeyEvent/Model/Repository/SeatRepository.php';
 class Seatcontroller extends Controller{
 
     protected SeatRepository $seatRepository;

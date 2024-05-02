@@ -1,6 +1,7 @@
 <?php
 
-require_once "EntityRepository.php";
+require_once "../DonkeyEvent/Model/Repository/EntityRepository.php";
+require_once "../DonkeyEvent/Model/Entity/Cinema.php";
 
 class CinemaRepository extends EntityRepository
 {

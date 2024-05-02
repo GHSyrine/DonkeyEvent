@@ -1,6 +1,6 @@
 <?php
 require_once 'Controller.php';
-require_once '../Model/Repository/CustomerRepository.php';
+require_once '../DonkeyEvent/Model/Repository/CustomerRepository.php';
 
 Class CustomerRepository extends Controller{
 

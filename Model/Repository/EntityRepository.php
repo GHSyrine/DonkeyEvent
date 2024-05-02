@@ -1,7 +1,5 @@
 <?php
 
-require_once "../DonkeyEvent/Model/Entity/Movie.php";
-
 class EntityRepository
 {
     protected PDO|null $pdo;
@@ -27,7 +25,7 @@ class EntityRepository
         $statement = $this->pdo->prepare("SELECT * FROM $this->table");
         $statement->execute();
         $this->table = ucfirst($this->table);
-        return $statement->fetchAll(PDO::FETCH_CLASS, Movie::class);
+        return $statement->fetchAll(PDO::FETCH_CLASS, $this->table);
     }
 
     /**
@@ -41,7 +39,7 @@ class EntityRepository
         $statement->bindParam(":id", $id);
         $statement->execute();
         $this->table = ucfirst($this->table);
-        return $statement->fetch(PDO::FETCH_CLASS, $this->table::class);
+        return $statement->fetch(PDO::FETCH_CLASS, $this->table);
     }
 
     /**

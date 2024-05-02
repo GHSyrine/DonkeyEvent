@@ -1,7 +1,7 @@
 <?php
 
 require_once 'Controller.php';
-require_once '../Model/Repository/CategoryRepository.php';
+require_once '../DonkeyEvent/Model/Repository/CategoryRepository.php';
 
 class CategoryController extends Controller {
 
