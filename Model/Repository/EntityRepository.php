@@ -1,5 +1,7 @@
 <?php
 
+require_once 'Model/Entity/Movie.php';
+
 class EntityRepository
 {
     protected PDO|null $pdo;
@@ -25,7 +27,7 @@ class EntityRepository
         $statement = $this->pdo->prepare("SELECT * FROM $this->table");
         $statement->execute();
         $this->table = ucfirst($this->table);
-        return $statement->fetchAll(PDO::FETCH_CLASS, $this->table::class);
+        return $statement->fetchAll(PDO::FETCH_CLASS, $this->table);
     }
 
     /**
@@ -36,10 +38,14 @@ class EntityRepository
     public function getById(int $id) : object
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id = :id");
-        $statement->bindParam(":id", $id);
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
         $statement->execute();
+
         $this->table = ucfirst($this->table);
-        return $statement->fetch(PDO::FETCH_CLASS, $this->table::class);
+
+        $statement->setFetchMode(PDO::FETCH_CLASS, $this->table);
+        
+        return $statement->fetch();
     }
 
     /**
