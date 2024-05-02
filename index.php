@@ -61,15 +61,25 @@ class App
             require_once 'Controller/' . $controller;
             $this->controller = new (ucfirst($this->URL[0]) . 'Controller');
 
+            var_dump($this->params);
+
             // Si la méthode dans les paramètres existe, garder la méthode, sinon garder la méthode par défaut
-            if (!empty($this->params[0] && !in_array($this->params[0], $this->controller->ALLOWED_METHODS))){
+            if (!in_array($this->params[0], $this->controller->ALLOWED_METHODS) && !empty($this->params)) {
                 $this->URL[0] = 'notFound';
                 $this->controller = "test";
                 header('location: /notFound');
                 return;
             } else {
-                $this->method = 'all';
-                $this->params[0] = 'all';
+                $this->method = $this->params[0];
+            }
+
+            if ($this->method == 'one'){
+                if (empty($this->params[1])) {
+                    $this->URL[0] = 'notFound';
+                    $this->controller = "test";
+                    header('location: /notFound');
+                    return;
+                }
             }
 
             // Si des paramètres existent, garder la vue associée au controller et aux paramètres
@@ -89,7 +99,7 @@ class App
                 return;
             }
             // Afficher la vue associée au controller
-            $this->controller->getView($view, $this->controller->{$this->method}());
+            $this->controller->getView($view, $this->controller->{$this->method}($this->params[1]));
             
         } else {
             // Rediriger vers l'URL notFound pour instancer le controller NotFound et afficher la vue NotFound
