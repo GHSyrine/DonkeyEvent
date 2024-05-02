@@ -5,8 +5,8 @@ include '..DonkeyEvent/Template/header.html.php';
 <?php
 foreach ($data as $cinema) :?>
 
-    <a href="/cinema/one/<?=$data->getId()?>">
-    <?=$data->getName()?>
+    <a href="/cinema/one/<?=$cinema->getId()?>">
+    <?=$cinema->getName()?>
     </a>
 
 
