@@ -1,18 +1,22 @@
 <?php
 
-require_once '../Model/Repository/EntityRepository.php';
+require_once '../DonkeyEvent/Model/Repository/EntityRepository.php';
 
 class Controller {
 
-    protected EntityRepository $entityRepository;
+    public $ALLOWED_METHODS = ["all"];
 
-    public function __construct(EntityRepository $entityRepository)
+    protected EntityRepository|null $entityRepository;
+
+    public function __construct(EntityRepository|null $entityRepository)
     {
         $this->entityRepository = $entityRepository;
     }
 
-    public function view($view, $data = []) {
-        require_once '../Template/' . $view . '.html.php';
+    public function getView($view, $data = []) {
+        var_dump("test",$view);
+        die();
+        require_once "../DonkeyEvent/Template/".$view.".html.php";
     }
 
     /**
@@ -21,7 +25,7 @@ class Controller {
 
     public function all() {
         $data = $this->entityRepository->getAll();
-        $this->view('', $data);
+        $this->getView('', $data);
     }
 
     /**
@@ -31,7 +35,7 @@ class Controller {
 
     public function one(int $id) {
         $data = $this->entityRepository->getById($id);
-        $this->view('', $data);
+        $this->getView('', $data);
     }
 
     /**

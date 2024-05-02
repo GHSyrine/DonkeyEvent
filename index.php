@@ -3,6 +3,8 @@
 class App
 {
     protected $URL;
+    protected $controller;
+    protected $method;
     protected $params;
 
     public function __construct($URL)
@@ -10,15 +12,31 @@ class App
         $this->URL = $_SERVER['REQUEST_URI'];
     }
 
-    private function getURL(): array
+    /**
+     * Get the URL
+     * @return array
+     */
+
+    private function getURL() : array
     {
         $this->URL = explode('/', $this->URL);
         $this->URL = array_filter($this->URL);
         $this->URL = array_values($this->URL);
+
+        if (empty($this->URL) || !file_exists('Controller/' . ucfirst($this->URL[0]) . 'Controller.php')) {
+            $this->URL = [];
+            $this->URL[0] = 'movie';
+            header('location: /movie');
+        }
         return $this->URL;
     }
 
-    private function getParams(): array
+    /**
+     * Get the parameters from the URL
+     * @return array
+     */
+
+    private function getParams() : array
     {
         $this->params = $this->URL;
         unset($this->params[0]);
@@ -26,8 +44,14 @@ class App
         return $this->params;
     }
 
-    public function getController(): void
+    /**
+     * Get the controller from the URL
+     * @return void
+     */
+
+    public function getController() : void
     {
+        // Récuperer le controller associé à l'URL
         $this->URL = $this->getURL();
         $this->params = $this->getParams();
         if (!empty($this->params)) {
@@ -35,20 +59,31 @@ class App
         } else {
             $view = $this->URL[0];
         }
+        $controller = ucfirst($this->URL[0]) . 'Controller.php';
 
         // Si le controller existe, instancier le controller
-        $controller = ucfirst($this->URL[0]) . 'Controller';
-        if (file_exists('Controller/' . $controller . '.php')) {
-            require_once 'Controller/' . $controller . '.php';
-            $controller = new $controller;
-            
-        } else {
-            // Si c'est la page notFound, afficher la page notFound
-            if ($controller === "notFoundController") {
-                require_once "Template/notFound.html.php";
+        if (file_exists('Controller/' . $controller)) {
+            require_once 'Controller/' . $controller;
+            $this->controller = new (ucfirst($this->URL[0]) . 'Controller');
+
+            // Si la méthode dans les paramètres existe, garder la méthode, sinon garder la méthode par défaut
+            if (!empty($this->params[1] || in_array($this->params[1], $this->controller->ALLOWED_METHODS))){
+                $this->method = $this->params[1];
+            } else {
+                $this->method = 'all';
+            }
+
+            // Si l'URL est "NotFound" alors afficher la vue NotFound
+            if ($this->URL[0] == 'notFound') {
+                $this->controller->getView($view, []);
                 return;
             }
-            // Rediriger vers l'URL notFound si le controller n'existe pas pour afficher la page notFound
+            $view = $this->URL[0];
+            // Afficher la vue associée au controller
+            $this->controller->getView($view, $this->controller->{$this->method}());
+            
+        } else {
+            // Rediriger vers l'URL notFound pour instancer le controller NotFound et afficher la vue NotFound
             header('location: /notFound');
         }
     }
@@ -56,3 +91,4 @@ class App
 
 $app = new App($_SERVER['REQUEST_URI']);
 $app->getController();
+?>
