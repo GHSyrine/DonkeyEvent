@@ -4,7 +4,7 @@ require_once '../DonkeyEvent/Model/Repository/EntityRepository.php';
 
 class Controller {
 
-    public $ALLOWED_METHODS = ["all"];
+    public $ALLOWED_METHODS = ["all", "one"];
 
     protected EntityRepository|null $entityRepository;
 

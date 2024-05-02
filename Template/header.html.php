@@ -16,7 +16,7 @@
                     <a href="/">Cinémas</a>
                 </li>
                 <li>
-                    <a href="/">Films</a>
+                    <a href="/movie">Films</a>
                 </li>
             </ul>
         </nav>
