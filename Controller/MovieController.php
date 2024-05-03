@@ -42,19 +42,4 @@ class MovieController extends Controller {
         return $movie;
     }
 
-    public function getMoviesByCategory($view, $filters = []){
-        $movies = $this->movieRepository->getMoviesByCategoryId($filters['id']);
-        $this->getView($view, $movies);
-    }
-
-    public function getMovie($view, $id){
-        $movie = $this->movieRepository->getById($id);
-        $this->getView($view, $movie);
-    }
-
-    public function getShowsByMovieId($view, $filters = []){
-        $shows = $this->movieRepository->getShowsByMovieId($filters['id']);
-        $this->getView($view, $shows);
-    }
-
 }
