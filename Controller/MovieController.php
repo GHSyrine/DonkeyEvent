@@ -3,7 +3,6 @@
 require_once 'Controller.php';
 require_once '../DonkeyEvent/Model/Repository/MovieRepository.php';
 require_once '../DonkeyEvent/Model/Repository/CategoryRepository.php';
-
 class MovieController extends Controller {
 
     protected MovieRepository $movieRepository;
@@ -25,6 +24,21 @@ class MovieController extends Controller {
         $categories = $this->movieRepository->getCategoriesByMovieId($movie->getId());
         $movie->setCategories($categories);
     }
+
+    private function setShowsByMovie($movie){
+        $shows = $this->movieRepository->getShowsByMovieId($movie->getId());
+        // @todo move 
+        foreach($shows as $show){
+            $show->setDate($this->formatDate($show->getDate()));
+        }
+        $movie->setShows($shows);
+    }
+
+    // @todo move 
+    private function formatDate($datetime){
+        return date("l H:i", strtotime($datetime));
+    }
+
     public function all(){
         $movies = parent::all();
         foreach($movies as $movie){
@@ -39,6 +53,7 @@ class MovieController extends Controller {
     public function one(int $id){
         $movie = parent::one($id);
         $this->setCategoriesByMovie($movie);
+        $this->setShowsByMovie($movie);
         return $movie;
     }
 

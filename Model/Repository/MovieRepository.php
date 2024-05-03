@@ -3,6 +3,7 @@
 require_once "../DonkeyEvent/Model/Repository/EntityRepository.php";
 require_once "../DonkeyEvent/Model/Entity/Movie.php";
 require_once "../DonkeyEvent/Model/Entity/Category.php";
+require_once "../DonkeyEvent/Model/Entity/Show.php";
 
 class MovieRepository extends EntityRepository
 {
@@ -18,4 +19,11 @@ class MovieRepository extends EntityRepository
         return $categories;
     }
 
+
+    public function getShowsByMovieId($id){
+        $tables = ["show", "movie"];
+        $foreignKeys = ['show.movie_id = movie.id'];
+        $shows = $this->getByFilterJoinTables($tables, $foreignKeys, "*", "movie.id = $id");
+        return $shows;
+    }
 }

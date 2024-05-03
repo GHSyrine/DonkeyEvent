@@ -8,6 +8,7 @@ class Movie extends Entity {
     private string $description = "";
     private string $release_date = "";
     private array $categories = [];
+    private array $shows = [];
 
     public function __construct() {
         $this->image = '/images/image.png';
@@ -77,6 +78,19 @@ class Movie extends Entity {
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+
+    public function getShows()
+    {
+        return $this->shows;
+    }
+
+    public function setShows($shows)
+    {
+        $this->shows = $shows;
 
         return $this;
     }
