@@ -2,7 +2,9 @@
 
 require_once "../DonkeyEvent/Model/Repository/EntityRepository.php";
 require_once "../DonkeyEvent/Model/Entity/Room.php";
-require_once "../DonkeyEvent/Model/Entity/cinema.php";
+require_once "../DonkeyEvent/Model/Entity/Show.php";
+require_once "../DonkeyEvent/Model/Entity/Movie.php";
+
 
 
 class RoomRepository extends EntityRepository
@@ -18,4 +20,12 @@ class RoomRepository extends EntityRepository
         $shows = $this->getByFilterJoinTables($tables, $foreignkeys, "*", "show.room_id=$id");
         return $shows;
     }
+
+    public function getMoviesByRoomId($id){
+        $tables=["show", "room", "movie"];
+        $foreignkeys =['show.room_id = room.id', 'show.movie_id=movie.id'];
+        $movies =$this->getByFilterJoinTables($tables, $foreignkeys, "*", "room.id=$id");
+        return $movies;
+    }
+    
 }

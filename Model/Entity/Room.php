@@ -9,7 +9,8 @@ class Room extends Entity{
     private int $cinema_id;
     private int $number_row;
     private array $shows = [];
-    
+    private array $movies = [];
+
 
     public function getName()
     {
@@ -93,6 +94,26 @@ class Room extends Entity{
     public function setShows($shows)
     {
         $this->shows = $shows;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of movies
+     */ 
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
+    /**
+     * Set the value of movies
+     *
+     * @return  self
+     */ 
+    public function setMovies($movies)
+    {
+        $this->movies = $movies;
 
         return $this;
     }
