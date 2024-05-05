@@ -9,4 +9,11 @@ class ShowRepository extends EntityRepository
     {
         parent::__construct($pdo, "show");
     }
+
+    public function getMoviesByShowId($id){
+        $tables=[`cinema`.`show`];
+        $foreignkeys =['show.movie_id'];
+        $movies =$this->getByFilterJoinTables($tables, $foreignkeys, "*", "show.movie_id=$id");
+        return $movies;
+    }
 }

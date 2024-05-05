@@ -1,25 +1,27 @@
-
-
-Nom de la salle : <?=$data->getName()?>
-Type : <?=$data->getType()?>
+<?php
+include 'Template/header.html.php';
+?>
+<div class="container mt-5">
+<h1>Nom de la salle : <?=$data->getName()?></h1>
+<p>Type : <?=$data->getType()?></p>
 
 
 <?php if (!empty($data->getShows())) : ?>
-    <h2>Spectacles:</h2>
-    <?php foreach ($data->getShows() as $show) : ?>
-        <a href="/show/one/<?=$show->getId()?>">
-            <?=$show->getDate()?>
-        </a>
-        <?php var_dump($show); ?>
-    <?php endforeach; ?>
-<?php endif; ?>
+        <h2>Spectacles:</h2>
+        <nav class="mb-8">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <?php foreach ($data->getShows() as $show) : ?>
+                        <div class="swiper-slide">
+                            <a href="/show/one/<?= $show->getId() ?>">
+                                <?= $show->getDate() ?>
+                    </a>
+                            
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </nav>
+        <?PHP endif;
 
-<?php if (!empty($data->getMovies())) : ?>
-    <h2>Films:</h2>
-    <?php foreach ($data->getMovies() as $movie) : ?>
-        <a href="/movie/one/<?=$movie->getId()?>">
-            <?=$movie->getName()?>
-        </a>
-        <?php var_dump($movie); ?>
-    <?php endforeach; ?>
-<?php endif; 
+ 

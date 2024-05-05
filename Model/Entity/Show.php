@@ -6,6 +6,8 @@ class Show extends Entity{
     private string $langage;
     private int $movie_id; 
     private int $room_id; 
+    private array $movies = [];
+
     
     public function getDate()
     {
@@ -66,6 +68,26 @@ class Show extends Entity{
     public function setRoom_id($room_id)
     {
         $this->room_id = $room_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of movies
+     */ 
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
+    /**
+     * Set the value of movies
+     *
+     * @return  self
+     */ 
+    public function setMovies($movies)
+    {
+        $this->movies = $movies;
 
         return $this;
     }

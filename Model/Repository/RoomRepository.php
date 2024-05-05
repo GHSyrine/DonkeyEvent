@@ -21,11 +21,6 @@ class RoomRepository extends EntityRepository
         return $shows;
     }
 
-    public function getMoviesByRoomId($id){
-        $tables=["show", "room", "movie"];
-        $foreignkeys =['show.room_id = room.id', 'show.movie_id=movie.id'];
-        $movies =$this->getByFilterJoinTables($tables, $foreignkeys, "*", "room.id=$id");
-        return $movies;
-    }
+   
     
 }
