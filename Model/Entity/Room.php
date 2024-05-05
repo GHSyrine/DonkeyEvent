@@ -3,21 +3,23 @@
 require_once "Entity.php";
 
 class Room extends Entity{
-    private string $name;
+    private string $title;
     private int $number_seat;
     private string $type;
     private int $cinema_id;
+    private int $number_row;
+    private array $shows = [];
     
 
     public function getName()
     {
-        return $this->name;
+        return $this->title;
     }
 
    
-    public function setName($name)
+    public function setName($title)
     {
-        $this->name = $name;
+        $this->title = $title;
 
         return $this;
     }
@@ -59,6 +61,38 @@ class Room extends Entity{
     public function setCinema_id($cinema_id)
     {
         $this->cinema_id = $cinema_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of number_row
+     */ 
+    public function getNumber_row()
+    {
+        return $this->number_row;
+    }
+
+    /**
+     * Set the value of number_row
+     *
+     * @return  self
+     */ 
+    public function setNumber_row($number_row)
+    {
+        $this->number_row = $number_row;
+
+        return $this;
+    }
+
+    public function getShows()
+    {
+        return $this->shows;
+    }
+
+    public function setShows($shows)
+    {
+        $this->shows = $shows;
 
         return $this;
     }

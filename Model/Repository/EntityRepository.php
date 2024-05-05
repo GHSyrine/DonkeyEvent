@@ -1,5 +1,5 @@
 <?php
-
+define("DB_NAME","cinema");
 class EntityRepository
 {
     protected PDO|null $pdo;
@@ -98,8 +98,7 @@ class EntityRepository
     protected function getByFilterJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre): array
     {
         // Construction de la requête pour sélectionner les colonnes de la première table
-        $query = "SELECT $columns FROM {$tables[0]}";
-    
+        $query = "SELECT $columns FROM " . DB_NAME . ".{$tables[0]}";    
         // Boucle sur les tables suivantes pour les joindre
         for ($i = 1; $i < count($tables); $i++) {
             if(!empty($foreignKeys[$i-1])){

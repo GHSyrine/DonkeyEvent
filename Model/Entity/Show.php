@@ -1,5 +1,5 @@
 <?php
-include "Entity.php";
+require_once "Entity.php";
 class Show extends Entity{
     private string $date;
     private int $price; 

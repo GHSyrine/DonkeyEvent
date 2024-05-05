@@ -1,17 +1,20 @@
 <?php 
-include '..DonkeyEvent/Template/header.html.php';
-?>
-<h1><?=$data->getName()?></h1>
-<p>
-   <span>  L'adresse du cinema: <?=$data->getAddress()??""?></span> 
-   <span>Liste des salles </span>
-   <?php
-   foreach ($data as $rooms) {?>
-    <?$data['name']?>
-    <?php
-   }
-   ?>
-</p>
-<?php
-include '..DonkeyEvent/Template/footer.html.php'
-?>
+include 'Template/header.html.php';
+ ?>
+
+<h1>Salles de cinéma pour <?= $data->getName(); ?>-<?= $data->getAddress(); ?> </h1>
+
+<?php 
+
+  if(!empty($data->getRooms())) :
+    foreach($data->getRooms() as $room) : ?>
+    <a href="/room/one/<?=$room->getId()?>">
+    <?=$room->getName()?>
+    </a>
+      <?=$room->getNumber_Seat()?>
+    
+   <?php   var_dump($room);
+endforeach;
+endif;
+   
+include 'Template/footer.html.php'; ?>
