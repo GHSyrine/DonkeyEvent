@@ -13,10 +13,10 @@
                     <a href="/">Accueil</a>
                 </li>
                 <li>
-                    <a href="/">Cinémas</a>
+                    <a href="/cinema/all">Cinémas</a>
                 </li>
                 <li>
-                    <a href="/movie">Films</a>
+                    <a href="/movie/all">Films</a>
                 </li>
             </ul>
         </nav>
