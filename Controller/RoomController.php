@@ -19,6 +19,9 @@ class RoomController extends Controller {
         $shows = $this->roomRepository->getShowsByRoomId($room->getId());
         $room ->setShows($shows);
     }
+    private function formatDate($datetime){
+        return date("l H:i", strtotime($datetime));
+    }
     public function all()
     {
         $rooms= parent::all();

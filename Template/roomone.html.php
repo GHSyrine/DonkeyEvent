@@ -13,7 +13,6 @@ $seatPerRow = $number_Seat/$number_Row;
 $svgWidth = $seatWidth * $number_Seat;
 $svgHeight = $seatHeight * $number_Row;
 
-var_dump($data) ;
 echo "<svg width='$svgWidth' height='$svgHeight' xmlns='http://www.w3.org/2000/svg'>";
 for ($row=0; $row<$number_Row; $row++){
 
@@ -32,8 +31,9 @@ for ($row=0; $row<$number_Row; $row++){
 
 echo "</svg>";
 if(!empty($data->getShows())):
-foreach($data->getShoww() as $show) :?>
-<a href="/show/one/<?=$show->getId()?>">
-<span style="background:#fcb2e8;padding:5px"><b><?=$show->getPrice()?>€</b> - <b><?=$show->getDate()?></b></span>
+foreach($data->getShows() as $show) :?>
+    <a href="/show/one/<?=$show->getId()?>">
+    <?=$show->getDate()?>
+    </a>
 <?php endforeach;
 endif;?>
