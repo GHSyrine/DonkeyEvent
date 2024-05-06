@@ -3,6 +3,7 @@ require_once "Entity.php";
 
 class Show extends Entity{
     private string $date;
+    private string $time;
     private int $price; 
     private string $langage;
     private int $movie_id; 
@@ -67,6 +68,26 @@ class Show extends Entity{
     public function setRoom_id($room_id)
     {
         $this->room_id = $room_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of time
+     */ 
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Set the value of time
+     *
+     * @return  self
+     */ 
+    public function setTime($time)
+    {
+        $this->time = $time;
 
         return $this;
     }

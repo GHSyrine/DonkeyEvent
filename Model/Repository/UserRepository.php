@@ -9,4 +9,13 @@ class UserRepository extends EntityRepository
     {
         parent::__construct($pdo, "user");
     }
+    public function getUserbyEmail()
+    {
+       $query = "SELECT * FROM user WHRE email = : email";
+       $statement =$this ->pdo->prepare($query);
+       $statement->bindParam(":email", $email, PDO::PARAM_STR);
+       $statement ->execute();
+       $user = $statement ->fetch(PDO::FETCH_CLASS);
+       return $user;
+    }
 }

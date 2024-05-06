@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 1);
 class App
 {
     protected $URL;
@@ -61,7 +61,7 @@ class App
             require_once 'Controller/' . $controller;
             $this->controller = new (ucfirst($this->URL[0]) . 'Controller');
 
-            var_dump($this->params);
+            // var_dump($this->params);
 
             // Si la méthode dans les paramètres existe, garder la méthode, sinon garder la méthode par défaut
             if (!in_array($this->params[0], $this->controller->ALLOWED_METHODS) && !empty($this->params)) {

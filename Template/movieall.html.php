@@ -20,7 +20,8 @@ include 'Template/header.html.php';
     <ul>
     <?php foreach($data['categories'] as $category) : ?>
         <li><?=$category->getName()?></li>
-    <?php endforeach; ?>
+    <?php endforeach;?>
+    
     </ul>
 <?php
 include 'Template/footer.html.php';

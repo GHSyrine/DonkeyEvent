@@ -10,6 +10,7 @@ include 'Template/header.html.php';
             <span style="background:#d5acc7;"><b><?=$category->getName()?></b></span>
     <?php endforeach;
     endif; ?>
+    
 <h2>Séances du film : </h2>
 <?php
     if(!empty($data->getShows())) :

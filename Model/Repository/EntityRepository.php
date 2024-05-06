@@ -113,6 +113,7 @@ class EntityRepository
         if($filtre !== ''){
             $query .= " WHERE $filtre";
         }
+        var_dump($query);
         // Préparation de la requête
         $statement = $this->pdo->prepare($query);
   
