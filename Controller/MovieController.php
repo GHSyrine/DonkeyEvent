@@ -9,13 +9,10 @@ class MovieController extends Controller {
     public function __construct()
     {
         $movieRepository = new MovieRepository();
-
         parent::__construct($movieRepository);
-
         $this->movieRepository = $movieRepository;
     }
 
-    // @todo refactor / rename / move
     private function setCategoriesByMovie($movie){
         $categories = $this->movieRepository->getCategoriesByMovieId($movie->getId());
         $movie->setCategories($categories);
@@ -23,7 +20,6 @@ class MovieController extends Controller {
 
     private function setSeancesByMovie($movie){
         $seances = $this->movieRepository->getSeancesByMovieId($movie->getId());
-        // @todo move 
         foreach($seances as $seance){
             $seance->setDate($this->formatDate($seance->getDate()));
         }

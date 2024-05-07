@@ -13,9 +13,9 @@ include 'Template/header.html.php';
     
 <h2>Séances du film : </h2>
 <?php
-    if(!empty($data->getShows())) :
-        foreach($data->getShows() as $show) : ?>
-            <span style="background:#fcb2e8;padding:5px"><b><?=$show->getPrice()?>€</b> - <b><?=$show->getDate()?></b></span>
+    if(!empty($data->getSeances())) :
+        foreach($data->getSeances() as $seance) : ?>
+            <span style="background:#fcb2e8;padding:5px"><b><?=$seance->getPrice()?>€</b> - <b><?=$seance->getDate()?></b></span>
     <?php endforeach;
     endif; ?>
 <?php

@@ -2,11 +2,11 @@
 include 'Template/header.html.php';
 ?>
 <div class="container mt-5">
-    <h1>Nom de la salle : <?= $data->getName() ?></h1>
+    <h1>Nom de la salle : <?= $data->getTitle() ?></h1>
     <p>Type : <?= $data->getType() ?></p>
     <?php
 
-    if (!empty($data->getShows())) : ?>
+    if (!empty($data->getSeances())) : ?>
         <h2>Spectacles:</h2>
         <nav class="mb-8">
             <div class="swiper-container">
@@ -17,23 +17,23 @@ include 'Template/header.html.php';
 
                 </div>
 
-                <?php foreach ($data->getShows() as $show) : ?>
-                    <?php if (!in_array($show->getDate(), $dates)) : ?>
-                        <?php $dates[] = $show->getDate(); ?>
-                    <?php echo $show->getDate();
+                <?php foreach ($data->getSeances() as $seance) : ?>
+                    <?php if (!in_array($seance->getDate(), $dates)) : ?>
+                        <?php $dates[] = $seance->getDate(); ?>
+                    <?php echo $seance->getDate();
                     endif;
                     ?>
                     <br>
                     <div>
                         <?php
-                        echo $show->getTime(); ?>
+                        echo $seance->getTime(); ?>
                         <br>
-                        <?php echo $show->getLangage(); ?>
+                        <?php echo $seance->getLangage(); ?>
                     </div>
                     <?php $movies = [];
 
                     foreach ($data->getMovies() as $movie) : ?>
-                        <?php if ($movie->getId() == $show->getMovie_id() && !in_array($movie->getId(), $movies)) : ?>
+                        <?php if ($movie->getId() == $seance->getMovie_id() && !in_array($movie->getId(), $movies)) : ?>
                             <div>
                                 <?php $movies[] = $movie->getId();?>
                                 <a href ="/movie/one/<?=$movie->getId()?>"><?=$movie->getName()?> </a>

@@ -1,7 +1,7 @@
 <?php
 require_once "Entity.php";
 
-class Show extends Entity{
+class Seance extends Entity{
     private string $date;
     private string $time;
     private int $price; 
