@@ -1,30 +1,47 @@
 <?php include 'Template/header.html.php';
-if (isset($_SESSION['user'])) {
-    echo '<div class="alert alert-sucess">Bienvenue,' . $_SESSION['user'] . '!</div>';
-} ?>
+
+
+if (isset($_SESSION['errorPassword'])) {?>
+    
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <?php echo   $_SESSION['errorPassword']; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+<?php
+unset($_SESSION['errorPassword']);
+}
+?>
+<?php
+if (isset($_SESSION['errorEmail'])) {?>
+    
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <?php echo   $_SESSION['errorEmail']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+<?php
+unset($_SESSION['errorEmail']);
+}
+?>
+
+
+
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h1 class="card-title text-center">Connexion</h1>
-                    <?php if (isset($data['error'])) : ?>
-                        <div class="alert alert-danger"><?= $data['error'] ?></div>
-                    <?php endif; ?>
+                
                     <form action="/user/login" method="POST">
                         <div class="mb-3">
                             <label for="Email" class="form-label">Email</label>
                             <input type="text" class="form-control" name="email">
-                            <?php if (isset($data['errorEmail'])) : ?>
-                                <div class="text-danger"><?= $data['errorEmail'] ?></div>
-                            <?php endif; ?>
+                
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Mot de passe</label>
                             <input type="password" class="form-control" name="password" id="password">
-                            <?php if (isset($data['errorPassword'])) : ?>
-                                <div class="text-danger"><?= $data['errorPassword'] ?></div>
-                            <?php endif; ?>
+                         
                         </div>
                         <button type="submit" class="btn btn-primary col-12">Connexion</button>
                     </form>
