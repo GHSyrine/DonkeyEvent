@@ -1,3 +1,4 @@
+
 <?php
 
 require_once "../DonkeyEvent/Model/Repository/EntityRepository.php";
@@ -9,14 +10,15 @@ class UserRepository extends EntityRepository
     {
         parent::__construct($pdo, "user");
     }
-    public function getUserbyEmail()
+    public function getUserbyEmail($email)
     {
-       $query = "SELECT * FROM $this->table WHERE email = :email";
+       $query = "SELECT * FROM cinema.user WHERE email = :email";
        $statement =$this ->pdo->prepare($query);
        $statement->bindParam(":email", $email, PDO::PARAM_STR);
        $statement ->execute();
        $this->table = ucfirst($this->table);
-       $user = $statement->fetchAll(PDO::FETCH_CLASS, User::class);
-       return $user;
+       
+       return $user = $statement->fetchAll(PDO::FETCH_CLASS, $this->table)[0];
+       
     }
 }

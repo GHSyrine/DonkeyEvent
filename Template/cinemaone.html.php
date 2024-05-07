@@ -10,13 +10,18 @@ include 'Template/header.html.php';
             <div class="col-md-4 mb-4">
               <div class="card">
                 <div class="card-body">
-                  <a class="card-title" href="/room/one/<?= $room->getId() ?>"><?= $room->getName() ?></a>
+                  <a class="card-title" href="/room/one/<?= $room->getId() ?>"><?= $room->getTitle() ?></a>
                   <p class="card-text"> <?= $room->getNumber_Seat() ?>
-                    <a href="/room/one/<?= $room->getId() ?>">
                 </div>
               </div>
             </div>
         <?php
           endforeach;
         endif;
-        include 'Template/footer.html.php'; ?>
+        ?>
+    </div>
+  </div>
+</div>
+<?php
+include 'Template/footer.html.php';
+?>

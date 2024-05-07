@@ -17,17 +17,23 @@ Class UserController extends Controller{
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
+
+            var_dump($_POST);
             $user = $this->userRepository->getUserByEmail($email);
+            var_dump($user);           
             if ($user) {
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['user'] = $user;
+                
+                if ($password == $user->getPassword()) {
+                    $_SESSION['log'] = "Bienvenue";
                     header("Location:../home");
                     return;
-                } else {
-                    $_SESSION['error'] = "Le mot de passe saisi est incorrect";
+                } else 
+                {
+
+                    $_SESSION['errorPassword'] = "Le mot de passe saisi est incorrect";
                 }
             } else {
-                $_SESSION['error'] = "L'email saisi est incorrect";
+                $_SESSION['errorEmail'] = "L'email saisi est incorrect";
             }
         } else {
             $_SESSION['error'] = "Veuillez saisir l'email et le mot de passe";

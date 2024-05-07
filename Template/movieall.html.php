@@ -1,9 +1,18 @@
 <?php
 include 'Template/header.html.php';
+// @todo
+if (isset($_SESSION['log'])) {?>
+    <div class="alert alert-sucess">
+   <?php  echo $_SESSION['log'];
+    unset($_SESSION['log']);
+}
 ?>
+
 <h1>Tous les films</h1>
     <ul>
-    <?php foreach($data as $movie) : ?>
+    <?php
+    $categories = [];
+    foreach($data as $movie) : ?>
         <li><a href="/movie/one/<?=$movie->getId()?>">
             <?=$movie->getName()?></a>
             <?php
@@ -18,9 +27,24 @@ include 'Template/header.html.php';
 
     <h2>Voir Toutes les catégories disponibles :</h2>
     <ul>
-    <?php foreach($data->getCategories() as $category) : ?>
-        <li><?=$category->getName()?></li>
-    <?php endforeach;?>
+    <?php
+    foreach($data as $movie) :
+    foreach($movie->getCategories() as $category) {
+    
+    if (in_array($category, $categories)) {
+        
+    } else {
+        $categories[] = $category;
+    }
+}
+    ?>
+    <?php endforeach; ?>  
+
+    <?php foreach($categories as $category) : ?>
+        <li><a href="/category/one/<?=$category->getId()?>">
+            <?=$category->getName()?></a>
+        </li>
+    <?php endforeach; ?>  
     
     </ul>
 <?php
