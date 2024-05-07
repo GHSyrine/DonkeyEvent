@@ -14,7 +14,9 @@ include 'Template/header.html.php';
                     <br>
                     <?php $dates = [];
                     ?>
+
                 </div>
+
                 <?php foreach ($data->getShows() as $show) : ?>
                     <?php if (!in_array($show->getDate(), $dates)) : ?>
                         <?php $dates[] = $show->getDate(); ?>
@@ -33,8 +35,8 @@ include 'Template/header.html.php';
                     foreach ($data->getMovies() as $movie) : ?>
                         <?php if ($movie->getId() == $show->getMovie_id() && !in_array($movie->getId(), $movies)) : ?>
                             <div>
-                                <?php $movies[] = $movie->getId();
-                                echo $movie->getName(); ?>
+                                <?php $movies[] = $movie->getId();?>
+                                <a href ="/movie/one/<?=$movie->getId()?>"><?=$movie->getName()?> </a>
                                 <br>
                                 <?php echo $movie->getDescription(); ?>
                                 <br>
