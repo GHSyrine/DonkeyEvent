@@ -5,7 +5,7 @@ require_once "Entity.php";
 class Seat extends Entity {
     private string $number;
     private int $customer_id;
-    private int $show_id;
+    private int $seance_id;
 
     public function getNumber()
     {
@@ -31,14 +31,14 @@ class Seat extends Entity {
         return $this;
     }
 
-    public function getShow_id()
+    public function getSeance_id()
     {
-        return $this->show_id;
+        return $this->seance_id;
     }
 
-    public function setShow_id(int $show_id)
+    public function setSeance_id(int $seance_id)
     {
-        $this->show_id = $show_id;
+        $this->seance_id = $seance_id;
 
         return $this;
     }

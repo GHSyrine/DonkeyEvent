@@ -15,11 +15,11 @@ class RoomController extends Controller
         $this->roomRepository = $roomRepository;
     }
 
-    private function setMoviesAndShowsByRoom($room)
+    private function setMoviesAndSeancesByRoom($room)
     {
-        $infos = $this->roomRepository->getMoviesAndShowsByRoomId($room->getId());
+        $infos = $this->roomRepository->getMoviesAndSeancesByRoomId($room->getId());
         $room->setMovies($infos[0]);
-        $room->setShows($infos[1]);
+        $room->setSeances($infos[1]);
         return $room;
     }
 
@@ -27,7 +27,7 @@ class RoomController extends Controller
     {
         $rooms = parent::all();
         foreach ($rooms as $room) {
-            $this->setMoviesAndShowsByRoom($room);
+            $this->setMoviesAndSeancesByRoom($room);
         }
         $data = $rooms;
         return $data;
@@ -36,7 +36,7 @@ class RoomController extends Controller
     public function one(int $id)
     {
         $room = parent::one($id);
-        $this->setMoviesAndShowsByRoom($room);
+        $this->setMoviesAndSeancesByRoom($room);
         return $room;
     }
 }

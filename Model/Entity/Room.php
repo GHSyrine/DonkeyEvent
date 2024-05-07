@@ -10,7 +10,7 @@ class Room extends Entity
     private int $cinema_id;
     private int $number_row;
     private array $movies = [];
-    private array $shows = [];
+    private array $seances = [];
 
     public function getName()
     {
@@ -72,14 +72,14 @@ class Room extends Entity
         return $this;
     }
 
-    public function getShows()
+    public function getSeances()
     {
-        return $this->shows;
+        return $this->seances;
     }
 
-    public function setShows($shows)
+    public function setShows($seances)
     {
-        $this->shows = $shows;
+        $this->seances = $seances;
 
         return $this;
     }

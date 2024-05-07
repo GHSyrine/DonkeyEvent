@@ -4,7 +4,7 @@ require_once "Entity.php";
 
 class Reservation extends Entity {
     private string $order;
-    private int $show_id;
+    private int $seance_id;
     private int $seat_id;
     private int $customer_id;
 
@@ -20,14 +20,14 @@ class Reservation extends Entity {
         return $this;
     }
 
-    public function getShow_id()
+    public function getSeance_id()
     {
-        return $this->show_id;
+        return $this->seance_id;
     }
 
-    public function setShow_id(int $show_id)
+    public function setSeance_id(int $seance_id)
     {
-        $this->show_id = $show_id;
+        $this->seance_id = $seance_id;
 
         return $this;
     }
