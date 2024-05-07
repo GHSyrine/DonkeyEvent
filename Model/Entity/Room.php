@@ -12,12 +12,13 @@ class Room extends Entity
     private array $movies = [];
     private array $seances = [];
 
-    public function getName()
+    public function getTitle()
     {
         return $this->title;
     }
 
-    public function setName($title)
+   
+    public function setTitle($title)
     {
         $this->title = $title;
 
@@ -35,7 +36,7 @@ class Room extends Entity
 
         return $this;
     }
-
+    // à voir 
     public function getType()
     {
         return $this->type;
@@ -77,7 +78,7 @@ class Room extends Entity
         return $this->seances;
     }
 
-    public function setShows($seances)
+    public function setSeances($seances)
     {
         $this->seances = $seances;
 

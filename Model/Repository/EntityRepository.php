@@ -1,5 +1,5 @@
 <?php
-
+define("DB_NAME","cinema");
 class EntityRepository
 {
     protected PDO|null $pdo;
@@ -111,6 +111,7 @@ class EntityRepository
         if ($filtre !== '') {
             $query .= " WHERE $filtre";
         }
+        var_dump($query);
         // Préparation de la requête
         $statement = $this->pdo->prepare($query);
 

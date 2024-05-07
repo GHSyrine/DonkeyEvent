@@ -37,4 +37,8 @@ if (isset($_SESSION['user'])) {
     </div>
 </div>
 
+<<<<<<< HEAD
 <?php include 'Template/footer.html.php';?>
+=======
+<?php include 'footer.php'; ?>
+>>>>>>> 1378be89a0a17ccef85fe8b45a4f0d31a7b019ec
