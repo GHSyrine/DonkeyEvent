@@ -68,6 +68,4 @@ class Controller {
         $this->entityRepository->insertIntoTable($columns, $values);
     }
 
-    
-
 }

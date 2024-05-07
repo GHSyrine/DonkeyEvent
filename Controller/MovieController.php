@@ -10,18 +10,28 @@ class MovieController extends Controller {
     public function __construct()
     {
         $movieRepository = new MovieRepository();
+
         parent::__construct($movieRepository);
+
         $this->movieRepository = $movieRepository;
     }
 
-    public function getMoviesByCategory($view, $filters = []){
-        $movies = $this->movieRepository->getMoviesByCategoryId($filters['id']);
-        $this->getView($view, $movies);
+    private function setCategoriesByMovie($movie){
+        $categories = $this->movieRepository->getCategoriesByMovieId($movie->getId());
+        $movie->setCategories($categories);
+    }
+    public function all(){
+        $movies = parent::all();
+        foreach($movies as $movie){
+            $this->setCategoriesByMovie($movie);
+        }
+        return $movies;
     }
 
-    public function getMovie($view, $id){
-        $movie = $this->movieRepository->getById($id);
-        $this->getView($view, $movie);
+    public function one(int $id){
+        $movie = parent::one($id);
+        $this->setCategoriesByMovie($movie);
+        return $movie;
     }
 
 }
