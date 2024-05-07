@@ -29,8 +29,7 @@ class RoomController extends Controller
         foreach ($rooms as $room) {
             $this->setMoviesAndSeancesByRoom($room);
         }
-        $data = $rooms;
-        return $data;
+        return $rooms;
     }
 
     public function one(int $id)

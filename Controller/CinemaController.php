@@ -26,13 +26,11 @@ class CinemaController extends Controller {
         foreach($cinemas as $cinema)  {
             $this->setRoomsByCinema($cinema);
         }      
-        $data = $cinemas;
-        return $data;
+        return $cinemas;
     }
     public function one(int $id){
         $cinema = parent ::one($id);
         $this->setRoomsByCinema($cinema);
         return $cinema;
-
     }
 }
