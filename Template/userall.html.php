@@ -1,7 +1,7 @@
 <?php include 'Template/header.html.php';
-if (isset($_Session['user'])){
-    echo '<div class="alert alert-sucess">Bienvenue,' . $_Session['use'].'!</div>';
-}?>
+if (isset($_SESSION['user'])) {
+    echo '<div class="alert alert-sucess">Bienvenue,' . $_SESSION['user'] . '!</div>';
+} ?>
 <div class="container">
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
@@ -37,4 +37,4 @@ if (isset($_Session['user'])){
     </div>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php include 'Template/footer.html.php';?>

@@ -11,10 +11,11 @@ class CinemaRepository extends EntityRepository
     }
     public function getRoomsByCinemaId(int $id): array
     {
-    $tables = ["room"];
-    $foreignkeys = ['room.cinema_id'];
-    $rooms = $this->getByFilterJoinTables($tables, $foreignkeys, "*", "room.cinema_id=$id");
-    
-    return $rooms;
-}
+        require_once "../DonkeyEvent/Model/Entity/Room.php";
+        $tables = ["room", "cinema"];
+        $foreignkeys = ['room.cinema_id = cinema.id'];
+        $rooms = $this->getByFilterJoinTables($tables, $foreignkeys, "room.*", "room.cinema_id=$id");
+
+        return $rooms;
+    }
 }

@@ -1,14 +1,15 @@
 <?php
 require_once "Entity.php";
-class Show extends Entity{
+class Seance extends Entity
+{
     private string $date;
-    private int $price; 
+    private int $price;
     private string $langage;
-    private int $movie_id; 
-    private int $room_id; 
+    private int $movie_id;
+    private int $room_id;
+    private string $time;
     private array $movies = [];
 
-    
     public function getDate()
     {
         return $this->date;
@@ -17,9 +18,9 @@ class Show extends Entity{
     public function setDate($date)
     {
         $this->date = $date;
-        return $this; 
+        return $this;
     }
-  
+
     public function getPrice()
     {
         return $this->price;
@@ -32,13 +33,11 @@ class Show extends Entity{
         return $this;
     }
 
-    
     public function getLangage()
     {
         return $this->langage;
     }
 
-   
     public function setLangage($langage)
     {
         $this->langage = $langage;
@@ -46,7 +45,6 @@ class Show extends Entity{
         return $this;
     }
 
-    
     public function getMovie_id()
     {
         return $this->movie_id;
@@ -58,7 +56,6 @@ class Show extends Entity{
 
         return $this;
     }
-
 
     public function getRoom_id()
     {
@@ -72,19 +69,23 @@ class Show extends Entity{
         return $this;
     }
 
-    /**
-     * Get the value of movies
-     */ 
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    public function setTime($time)
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
     public function getMovies()
     {
         return $this->movies;
     }
 
-    /**
-     * Set the value of movies
-     *
-     * @return  self
-     */ 
     public function setMovies($movies)
     {
         $this->movies = $movies;

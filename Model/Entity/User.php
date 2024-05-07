@@ -4,7 +4,7 @@ require_once "Entity.php";
 
 class User extends Entity{
     private string $email;
-    private int $password;
+    private string $password;
     private int $customer_id;
 
 

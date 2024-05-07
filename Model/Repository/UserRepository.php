@@ -11,11 +11,12 @@ class UserRepository extends EntityRepository
     }
     public function getUserbyEmail()
     {
-       $query = "SELECT * FROM user WHRE email = : email";
+       $query = "SELECT * FROM $this->table WHERE email = :email";
        $statement =$this ->pdo->prepare($query);
        $statement->bindParam(":email", $email, PDO::PARAM_STR);
        $statement ->execute();
-       $user = $statement ->fetch(PDO::FETCH_CLASS);
+       $this->table = ucfirst($this->table);
+       $user = $statement->fetchAll(PDO::FETCH_CLASS, User::class);
        return $user;
     }
 }

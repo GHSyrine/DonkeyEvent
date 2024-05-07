@@ -2,8 +2,6 @@
 
 require_once "../DonkeyEvent/Model/Repository/EntityRepository.php";
 require_once "../DonkeyEvent/Model/Entity/Room.php";
-require_once "../DonkeyEvent/Model/Entity/Show.php";
-require_once "../DonkeyEvent/Model/Entity/Movie.php";
 
 
 
@@ -13,14 +11,24 @@ class RoomRepository extends EntityRepository
     {
         parent::__construct($pdo, "room");
     }
-    public function getShowsByRoomId(int $id)
-    {
-        $tables =["show"];
-        $foreignkeys =['show.room_id'];
-        $shows = $this->getByFilterJoinTables($tables, $foreignkeys, "*", "show.room_id=$id");
-        return $shows;
+
+        public function getMoviesAndShowsByRoomId($id){
+            require_once "../DonkeyEvent/Model/Entity/Seance.php";
+            require_once "../DonkeyEvent/Model/Entity/Movie.php";
+            
+            $tables=["seance", "room", "movie"];
+            $foreignkeys =['seance.room_id = room.id', 'seance.movie_id=movie.id'];
+            
+            $shows = $this->getByFilterJoinTables($tables, $foreignkeys, "seance.*", "room.id=$id");
+            $tables=["movie", "seance", "room"];
+            $foreignkeys =['movie.id = seance.movie_id', 'seance.room_id=room.id'];
+
+            $movies =$this->getByFilterJoinTables($tables, $foreignkeys, "movie.*", "room.id=$id");
+            $infos =[$movies, $shows];
+            return $infos;
+        }
+        
     }
 
    
     
-}

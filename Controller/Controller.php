@@ -4,7 +4,7 @@ require_once '../DonkeyEvent/Model/Repository/EntityRepository.php';
 
 class Controller {
 
-    public $ALLOWED_METHODS = ["all", "one"];
+    public $ALLOWED_METHODS = ["all", "one", "login"];
 
     protected EntityRepository|null $entityRepository;
 
@@ -14,6 +14,9 @@ class Controller {
     }
 
     public function getView($view, $data = []) {
+        if ($view == "userlogin"){
+            $view = "userall";
+        }
         require_once "../DonkeyEvent/Template/".$view.".html.php";
     }
 

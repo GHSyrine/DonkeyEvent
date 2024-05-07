@@ -19,16 +19,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/home/all"><i class="fas fa-home"></i> Accueil</a>
+                    <a class="nav-link" href="/"><i class="fas fa-home"></i>Accueil</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cinema/all"><i class="fas fa-film"></i> Cinémas</a>
+                    <a class="nav-link" href="/cinema"><i class="fas fa-film"></i>Cinémas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/movie/all"><i class="fas fa-ticket-alt"></i> Films</a>
+                    <a class="nav-link" href="/movie"><i class="fas fa-ticket-alt"></i>Films</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/all"><i class="fas fa-user"></i> Connexion</a>
+                    <a class="nav-link" href="/user"><i class="fas fa-user"></i>Connexion</a>
                 </li>
             </ul>
         </div>

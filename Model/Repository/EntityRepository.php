@@ -1,5 +1,5 @@
 <?php
-define("DB_NAME","cinema");
+
 class EntityRepository
 {
     protected PDO|null $pdo;
@@ -20,7 +20,7 @@ class EntityRepository
      * @return array exemple : [0 => Cinema, 1 => Cinema, 2 => Cinema]
      */
 
-    public function getAll() : array
+    public function getAll(): array
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table");
         $statement->execute();
@@ -33,7 +33,7 @@ class EntityRepository
      * @return object exemple : Cinema {id: 1, name: "Cinema 1", address: "1 rue de Paris"}
      */
 
-    public function getById(int $id) : object
+    public function getById(int $id): object
     {
         $statement = $this->pdo->prepare("SELECT * FROM $this->table WHERE id = :id");
         $statement->bindParam(":id", $id, PDO::PARAM_INT);
@@ -50,7 +50,7 @@ class EntityRepository
      * @return void
      */
 
-    public function updateTable(string $columns, string $filtre) : void
+    public function updateTable(string $columns, string $filtre): void
     {
         $query = "UPDATE $this->table SET :columns WHERE :filtre";
         $statement = $this->pdo->prepare($query);
@@ -64,7 +64,7 @@ class EntityRepository
      * @return void
      */
 
-    public function deleteFromTable(string $filtre) : void
+    public function deleteFromTable(string $filtre): void
     {
         $query = "DELETE FROM $this->table WHERE :filtre";
         $statement = $this->pdo->prepare($query);
@@ -78,7 +78,7 @@ class EntityRepository
      * @return void
      */
 
-    public function insertIntoTable(string $columns, string $values) : void
+    public function insertIntoTable(string $columns, string $values): void
     {
         $query = "INSERT INTO $this->table (:columns) VALUES (:values)";
         $statement = $this->pdo->prepare($query);
@@ -98,26 +98,25 @@ class EntityRepository
     protected function getByFilterJoinTables(array $tables, array $foreignKeys, string $columns, string $filtre): array
     {
         // Construction de la requête pour sélectionner les colonnes de la première table
-        $query = "SELECT $columns FROM " . DB_NAME . ".{$tables[0]}";    
+        $query = "SELECT $columns FROM {$tables[0]}";
+
         // Boucle sur les tables suivantes pour les joindre
         for ($i = 1; $i < count($tables); $i++) {
-            if(!empty($foreignKeys[$i-1])){
-                $query .= " INNER JOIN {$tables[$i]} ON {$foreignKeys[$i-1]}";
+            if (!empty($foreignKeys[$i - 1])) {
+                $query .= " INNER JOIN {$tables[$i]} ON {$foreignKeys[$i - 1]}";
             }
         }
-    
+
         // Ajouter le filtre
-        if($filtre !== ''){
+        if ($filtre !== '') {
             $query .= " WHERE $filtre";
         }
         // Préparation de la requête
         $statement = $this->pdo->prepare($query);
-  
+
         // Exécution de la requête avec les valeurs liées
         $statement->execute();
         // Retourner les résultats
         return $statement->fetchAll(PDO::FETCH_CLASS, ucfirst($tables[0]));
     }
-    
-
 }
