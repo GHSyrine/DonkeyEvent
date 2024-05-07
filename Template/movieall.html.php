@@ -3,7 +3,7 @@ include 'Template/header.html.php';
 ?>
 <h1>Tous les films</h1>
     <ul>
-    <?php foreach($data['movies'] as $movie) : ?>
+    <?php foreach($data as $movie) : ?>
         <li><a href="/movie/one/<?=$movie->getId()?>">
             <?=$movie->getName()?></a>
             <?php
@@ -18,9 +18,10 @@ include 'Template/header.html.php';
 
     <h2>Voir Toutes les catégories disponibles :</h2>
     <ul>
-    <?php foreach($data['categories'] as $category) : ?>
+    <?php foreach($data->getCategories() as $category) : ?>
         <li><?=$category->getName()?></li>
-    <?php endforeach; ?>
+    <?php endforeach;?>
+    
     </ul>
 <?php
 include 'Template/footer.html.php';

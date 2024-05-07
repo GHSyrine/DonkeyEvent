@@ -1,13 +1,13 @@
 <?php
 require_once "Entity.php";
-class Seance extends Entity
-{
+
+class Show extends Entity{
     private string $date;
-    private int $price;
+    private string $time;
+    private int $price; 
     private string $langage;
     private int $movie_id;
     private int $room_id;
-    private string $time;
     private array $movies = [];
 
     public function getDate()
