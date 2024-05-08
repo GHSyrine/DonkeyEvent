@@ -39,10 +39,6 @@
                     type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
-
-
-
-
             </ul>
         </div>
     </nav>
