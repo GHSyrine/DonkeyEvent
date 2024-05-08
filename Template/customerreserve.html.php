@@ -2,7 +2,7 @@
 include 'Template/header.html.php';
 ?>
 
-<form action="/reservation/reserve">
+<form action="/reservation/one">
     <label for="name">Nom</label>
     <input type="text" name="name" id="name">
     <label for="firstname">Prénom</label>
