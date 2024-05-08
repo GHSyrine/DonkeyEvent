@@ -2,7 +2,7 @@
 require_once 'Controller.php';
 require_once '../DonkeyEvent/Model/Repository/CustomerRepository.php';
 
-Class CustomerRepository extends Controller{
+Class CustomerController extends Controller{
 
     protected CustomerRepository $customerRepository;
 
@@ -11,6 +11,10 @@ Class CustomerRepository extends Controller{
         $customerRepository = new CustomerRepository();
         parent::__construct($customerRepository);
         $this->customerRepository = $customerRepository;
+    }
+
+    public function reserve() {
+        
     }
 
 }
