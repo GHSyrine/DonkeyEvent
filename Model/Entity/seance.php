@@ -8,6 +8,8 @@ class Seance extends Entity{
     private string $langage;
     private int $movie_id;
     private int $room_id;
+    private object $room;
+    private array $seats = [];
     private array $movies = [];
 
     public function getDate()
@@ -91,5 +93,25 @@ class Seance extends Entity{
         $this->movies = $movies;
 
         return $this;
+    }
+
+    public function getRoom()
+    {
+        return $this->room;
+    }
+
+    public function setRoom($room) : void
+    {
+        $this->room = $room;
+    }
+
+    public function getSeats()
+    {
+        return $this->seats;
+    }
+
+    public function setSeats($seats) : void
+    {
+        $this->seats = $seats;
     }
 }
