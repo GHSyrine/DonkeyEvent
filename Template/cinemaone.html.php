@@ -11,7 +11,7 @@ include 'Template/header.html.php';
               <div class="card">
                 <div class="card-body">
                   <a class="card-title" href="/room/one/<?= $room->getId() ?>"><?= $room->getTitle() ?></a>
-                  <p class="card-text"> <?= $room->getNumber_Seat() ?>
+                  <p class="card-text"> <?= $room->getType() ?>
                 </div>
               </div>
             </div>
@@ -19,8 +19,8 @@ include 'Template/header.html.php';
           endforeach;
         endif;
         ?>
+      </div>
     </div>
-  </div>
 </div>
 <?php
 include 'Template/footer.html.php';

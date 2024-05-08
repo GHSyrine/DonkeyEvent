@@ -3,7 +3,7 @@
 $seatWidth = 100;
 $seatHeight = 100;
 
-$number_Seat =100;
+$number_Seat = 100;
 $number_Row = 10;
 $seatPerRow = $number_Seat / $number_Row;
 
@@ -20,5 +20,3 @@ for ($row = 0; $row < $number_Row; $row++) {
 
     }
 }
-
-

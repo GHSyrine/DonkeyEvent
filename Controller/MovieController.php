@@ -18,7 +18,8 @@ class MovieController extends Controller {
         $movie->setCategories($categories);
     }
 
-    private function setSeancesByMovie($movie){
+    private function setSeancesByMovie($movie)
+    {
         $seances = $this->movieRepository->getSeancesByMovieId($movie->getId());
         foreach($seances as $seance){
             $seance->setDate($this->formatDate($seance->getDate()));
@@ -30,7 +31,8 @@ class MovieController extends Controller {
         return date("l H:i", strtotime($datetime));
     }
 
-    public function all(){
+    public function all()
+    {
         $movies = parent::all();
         foreach($movies as $movie){
             $this->setCategoriesByMovie($movie);
@@ -44,5 +46,12 @@ class MovieController extends Controller {
         $this->setSeancesByMovie($movie);
         return $movie;
     }
+    public function find()
 
+    {  
+        $name = $_POST['search'];
+        $data = $this ->movieRepository->findMoviesByName($name);
+        
+        return $data;
+    }
 }
