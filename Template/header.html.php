@@ -37,6 +37,15 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="/user"><i class="fas fa-user">&nbsp;</i></a>
                 </li>
+                <li class="nav-item">
+                
+
+                <form class="d-flex" role="search" action="/movie/find" method="POST">
+                    <input class="form-control me-2" name="search"
+                    
+                    type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </ul>
         </div>
     </nav>
