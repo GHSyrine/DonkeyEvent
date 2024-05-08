@@ -2,10 +2,6 @@
 include 'Template/header.html.php';
 ?>
 <?php
-echo '<pre>';
-var_dump($data);
-echo '</pre>';
-
 $placeTotal = $data->getRoom()->getNumber_seat();
 $placeRestante = $placeTotal - count($data->getSeats());
 ?>
@@ -49,11 +45,8 @@ for ($i = 1; $i <= $data->getRoom()->getNumber_row(); $i++) { ?>
 <input type="submit" value="Réserver" />
 </form>
 
-<h2><?= $data->getPrice() ?>€</h2>
+<h2><?= $data->getPrice() ?>€ / place</h2>
 
-<h2>
-    <a href="/seat/reserve">Seat reserve</a>
-</h2>
 
 <?php
 include 'Template/footer.html.php';
