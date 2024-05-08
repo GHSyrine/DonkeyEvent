@@ -7,7 +7,7 @@ include 'Template/header.html.php';
     <?php
     if(!empty($data->getCategories())) :
         foreach($data->getCategories() as $category) : ?>
-            <span style="background:#d5acc7;"><b><?=$category->getName()?></b></span>
+            <a href="/category/one/<?=$category->getId()?>"style="background:#d5acc7;"><b><?=$category->getName()?></b></a>
     <?php endforeach;
     endif; ?>
     
@@ -15,7 +15,7 @@ include 'Template/header.html.php';
 <?php
     if(!empty($data->getSeances())) :
         foreach($data->getSeances() as $seance) : ?>
-            <span style="background:#fcb2e8;padding:5px"><b><?=$seance->getPrice()?>€</b> - <b><?=$seance->getDate()?></b></span>
+            <a href="/seance/one/<?=$seance->getId()?>" style="background:#fcb2e8;padding:5px"><b><?=$seance->getPrice()?>€</b> - <b><?=$seance->getDate()?></b></a>
     <?php endforeach;
     endif; ?>
 <?php

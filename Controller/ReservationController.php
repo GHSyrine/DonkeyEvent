@@ -12,4 +12,8 @@ Class Reservationcontroller extends Controller{
         parent::__construct($reservationRepository);
         $this->reservationRepository = $reservationRepository;
     }
+
+    public function reserve() {
+        
+    }
 }

@@ -65,7 +65,6 @@ class App
       require_once 'Controller/' . $controller;
       $this->controller = new (ucfirst($this->URL[0]) . 'Controller');
 
-
       // Si la méthode dans les paramètres existe, garder la méthode, sinon garder la méthode par défaut
       if (!in_array($this->params[0], $this->controller->ALLOWED_METHODS) && !empty($this->params)) {
         $this->URL[0] = 'notFound';
