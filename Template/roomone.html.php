@@ -38,8 +38,7 @@ include 'Template/header.html.php';
                                 <?php $movies[] = $movie->getId();?>
                                 <a href ="/movie/one/<?=$movie->getId()?>"><?=$movie->getName()?> </a>
                                 <br>
-                                <?php echo $movie->getDescription(); ?>
-                                <br>
+                                
                         <?php echo "Release_date" . $movie->getReleaseDate();
                         //ajouter l'image
                         endif;
