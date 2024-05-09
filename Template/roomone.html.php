@@ -71,4 +71,3 @@ foreach ($seances as $seance) {
     ?>
     </div>
 </body> 
-

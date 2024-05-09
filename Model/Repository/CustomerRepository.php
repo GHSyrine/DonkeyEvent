@@ -8,4 +8,13 @@ Class CustomerRepository extends EntityRepository
     {
         parent::__construct($pdo, "customer");
     }
+    public function getLastCustomerId()
+    {
+        $statement = $this->pdo->prepare("SELECT id FROM $this->table ORDER BY id desc limit 1");
+        
+        $statement->execute();
+
+        $this->table = ucfirst($this->table);
+        return $statement->fetch();
+    }
 }
