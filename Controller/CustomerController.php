@@ -15,7 +15,7 @@ Class CustomerController extends Controller{
 
     public function reserve() {
         var_dump($_POST);
-        die();
+       
     }
 
 }
