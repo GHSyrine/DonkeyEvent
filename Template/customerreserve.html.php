@@ -22,3 +22,4 @@ include 'Template/header.html.php';
 <?php
 include 'Template/footer.html.php';
 ?>
+<!-- faire un formulaire -->
