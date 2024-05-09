@@ -23,5 +23,5 @@ include 'Template/header.html.php';
   </div>
 </div>
 <?php
-include 'Template/footer.html.php';
+include '../Template/footer.html.php';
 ?>
