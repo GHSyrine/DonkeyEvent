@@ -1,5 +1,5 @@
 <?php
-include "Entity.php";
+require_once  "Entity.php";
 Class Customer extends Entity {
     private string $firstname;
     private string $lastname; 

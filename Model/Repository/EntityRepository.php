@@ -102,7 +102,7 @@ class EntityRepository
         // Boucle sur les tables suivantes pour les joindre
         for ($i = 1; $i < count($tables); $i++) {
             if (!empty($foreignKeys[$i - 1])) {
-                $query .= " INNER JOIN {$tables[$i]} ON {$foreignKeys[$i - 1]}";
+                $query .= " LEFT JOIN {$tables[$i]} ON {$foreignKeys[$i - 1]}";
             }
         }
 
