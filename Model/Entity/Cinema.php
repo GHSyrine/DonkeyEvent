@@ -2,11 +2,10 @@
 
 require_once "Entity.php";
 
-class Cinema extends Entity{
+class Cinema extends Entity {
     private string $name;
     private string $address;
     private array $rooms=[];
-
 
     public function getName()
     {
@@ -32,19 +31,11 @@ class Cinema extends Entity{
         return $this;
     }
 
-    /**
-     * Get the value of rooms
-     */ 
     public function getRooms()
     {
         return $this->rooms;
     }
 
-    /**
-     * Set the value of rooms
-     *
-     * @return  self
-     */ 
     public function setRooms($rooms)
     {
         $this->rooms = $rooms;

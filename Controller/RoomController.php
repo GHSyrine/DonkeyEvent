@@ -5,7 +5,6 @@ require_once '../DonkeyEvent/Model/Repository/RoomRepository.php';
 
 class RoomController extends Controller
 {
-
     protected RoomRepository $roomRepository;
 
     public function __construct()

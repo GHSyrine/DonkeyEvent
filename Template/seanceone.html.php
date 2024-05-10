@@ -29,7 +29,6 @@ $placeRestante = $placeTotal - count($data->getSeats());
                             <input type="checkbox" id="<?= $seatNumber ?>" name="<?= $seatNumber ?>" disabled />
                             <label for="<?= $seatNumber ?>"><?= $seatNumber ?></label>
                         </div>
-
                     <?php } else { ?>
                         <div>
                             <input type="checkbox" id="<?= $seatNumber ?>" name="<?= $seatNumber ?>" />
@@ -43,10 +42,7 @@ $placeRestante = $placeTotal - count($data->getSeats());
     <input type="hidden" name="seance_id" value="<?= $data->getId() ?>" />
     <input type="submit" value="Réserver" />
 </form>
-
 <h2><?= $data->getPrice() ?>€ / place</h2>
-
-
 <?php
 include 'Template/footer.html.php';
 ?>

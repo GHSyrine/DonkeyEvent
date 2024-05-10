@@ -35,5 +35,4 @@ class SeanceRepository extends EntityRepository
         $movies = $this->getByFilterJoinTables($tables, $foreignkeys, "movie.*", "seance.id=$id");
         return $movies;
     }
-
 }

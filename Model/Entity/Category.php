@@ -2,7 +2,7 @@
 
 require_once "Entity.php";
 
-class Category extends Entity{
+class Category extends Entity {
     private string $name;
     private array $movies =[];
 
@@ -10,7 +10,6 @@ class Category extends Entity{
     {
         return $this->name;
     }
-
     
     public function setName($name)
     {
@@ -23,7 +22,6 @@ class Category extends Entity{
     {
         return $this->movies;
     }
-
  
     public function setMovies($movies)
     {

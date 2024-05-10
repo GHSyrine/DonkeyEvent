@@ -5,7 +5,6 @@ require_once '../DonkeyEvent/Model/Repository/SeanceRepository.php';
 
 class SeanceController extends Controller
 {
-
     protected SeanceRepository $seanceRepository;
 
     public function __construct()
@@ -46,12 +45,13 @@ class SeanceController extends Controller
         return $seance;
     }
 
-    public function reserve(int $id){
+    public function reserve(int $id)
+    {
         $seance = parent::one($id);
         $this->setRoomsAndSeatsBySeance($seance);
         $this->setMovieBySeance($seance);
-        foreach($_POST as $key => $value){
-            if($value == "on"){
+        foreach ($_POST as $key => $value) {
+            if ($value == "on") {
                 $seats[] = $key;
             }
         }

@@ -5,7 +5,6 @@ require_once "../DonkeyEvent/Model/Entity/Movie.php";
 require_once "../DonkeyEvent/Model/Entity/Category.php";
 require_once "../DonkeyEvent/Model/Entity/Seance.php";
 
-
 class MovieRepository extends EntityRepository
 {
     public function __construct(PDO $pdo = null)
@@ -32,5 +31,4 @@ class MovieRepository extends EntityRepository
         $seances = $this->getByFilterJoinTables($tables, $foreignKeys, "seance.*", "movie.id = $id");
         return $seances;
     }
-
 }

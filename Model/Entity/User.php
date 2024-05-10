@@ -7,12 +7,10 @@ class User extends Entity{
     private string $password;
     private int $customer_id;
 
-
     public function getEmail()
     {
         return $this->email;
     }
-
    
     public function setEmail($email)
     {
@@ -25,7 +23,6 @@ class User extends Entity{
     {
         return $this->password;
     }
-
     
     public function setPassword($password)
     {
@@ -34,13 +31,11 @@ class User extends Entity{
         return $this;
     }
 
-  
     public function getCustomer_id()
     {
         return $this->customer_id;
     }
 
-   
     public function setCustomer_id($customer_id)
     {
         $this->customer_id = $customer_id;
