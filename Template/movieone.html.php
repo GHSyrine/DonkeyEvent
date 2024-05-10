@@ -8,8 +8,7 @@ include 'Template/header.html.php';
         <div class="d-flex text-center">
             <img class="image-movie" src="<?= $data->getImage() ?>" alt="image du film">
             <div>
-                <p class="description text-white text-capitalize text-center
-                "><?= $data->getDescription() ?>
+                <p class="description text-white text-capitalize text-center pl-2"><?= $data->getDescription() ?>
                 </p>
                 <h5 class="text-white text-center text-warning">Catégories du film : </h5>
                 <?php
@@ -23,7 +22,7 @@ include 'Template/header.html.php';
                     <?php
                     if (!empty($data->getSeances())) :
                         foreach ($data->getSeances() as $seance) : ?>
-                            <a href="/seance/one/<?= $seance->getId() ?>" class="p-1 border text-white"><b><?= $seance->getPrice() ?>€</b> - <b><?= $seance->getDate() ?></b></a>
+                            <a href="/seance/one/<?= $seance->getId() ?>" class="p-1 text-white"><b><?= $seance->getPrice() ?>€</b> - <b><?= $seance->getDate() ?></b></a>
                     <?php endforeach;
                     endif; ?>
 

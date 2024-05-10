@@ -1,5 +1,24 @@
 <?php
 include 'Template/header.html.php';
+setlocale(LC_TIME, "fr_FR");
+$dates = [];
+$movies = [];
+
+$seances = $data->getSeances();
+foreach ($seances as $seance) {
+    if (!in_array($seance->getDate(), $dates)) {
+        $date_formattee = date("D. j M", strtotime($seance->getDate()));
+        $dates[] = $date_formattee;
+    }
+
+    foreach ($data->getMovies() as $movie) {
+       if ($movie->getId() == $seance->getMovie_id()){
+            $movies[$movie->getId()]['entity'] = $movie;
+            $movies[$movie->getId()]['categories'] = $movie->getCategories();
+            $movies[$movie->getId()]['seances'][] = $seance;
+       }
+    }
+}
 ?>
 <div class="container mt-5">
     <h1>Nom de la salle : <?= $data->getTitle() ?></h1>
