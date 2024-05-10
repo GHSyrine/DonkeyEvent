@@ -5,24 +5,41 @@ include 'Template/header.html.php';
 
 <h1>Détails de la réservation</h1>
 
+<?php foreach ($data as $reservation) : ?>
+
 <h2>séance</h2>
-<?= $data->getSeance()[0]->getDate() ?>
+<?= $reservation->getSeance()->getDate() ?>
+<h2>client</h2>
+<?= $reservation->getCustomer()->getFirstname() . " " . $reservation->getCustomer()->getLastname() ?>
 <h2>place</h2>
 <?php
-foreach ($data->getseats() as $seat) : ?>
-   <?= $seat->getNumber() ?>
-<?php endforeach ?>
-<h2>client</h2>
-<?= $data->getCustomer() ?>
+$price = $reservation->getSeance()->getPrice();
+foreach ($reservation->getSeats() as $seat) {
+   echo $seat->getNumber();
+   $seats[] = $seat->getNumber();
+}
+
+$total = count($seats) * $price;
+?>
 <h2>total</h2>
-<?php $price = $data->getPrice();
-$seats = explode(",",$data->getSeat());
-$number = count($seats);
-$total = $number * $price;
+<?php 
+
 echo $total . "€"; 
 ?>
 <h2>numéro de commande</h2>
-<?= $data->getOrder(); ?>
+<?= $reservation->getOrderNum(); 
+$orderNumber = $reservation->getOrderNum();
+break;
+?>
+<?php endforeach;
+
+$name = "/images/qrcode/qr-code-".$orderNumber.".png";
+?>
+<br>
+<br>
+<br>
+<img src=<?=$name?> alt='qr-code'>
+
 <?php
 include 'Template/footer.html.php';
 ?>

@@ -7,8 +7,8 @@ class Reservation extends Entity {
     private int $seance_id;
     private int $seat_id;
     private int $customer_id;
-    private array $customer; 
-    private array $seance; 
+    private object $customer; 
+    private object $seance; 
     private array $seats;
 
     public function getSeance_id()

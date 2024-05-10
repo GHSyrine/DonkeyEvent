@@ -30,13 +30,16 @@ Class Reservationcontroller extends Controller{
          }
          return $reservation;
     }
-    public function one(int $id)
+    public function one(int $orderNum)
     {
-        $reservation =parent::one($id);
-        $this->setSeanceAndCustomerAndSeatsByReservation($reservation);
-
-        return $reservation;
+        $reservations = $this->reservationRepository->getReservationByOrderNum($orderNum);
+        foreach($reservations as $reservation){
+            $this->setSeanceAndCustomerAndSeatsByReservation($reservation);
+        }
+        
+        return $reservations;
     }
+
     public function reserve()
     {
         $movieName =$_POST['movieName'];
@@ -49,15 +52,20 @@ Class Reservationcontroller extends Controller{
         $firstname=$_POST['firstname'];
         $email=$_POST['email'];
         $seanceId=$_POST['seanceId'];
-        var_dump($seanceId);
         $lastOrder=$this->reservationRepository->getLastOrder();
         require_once '../DonkeyEvent/Model/Repository/CustomerRepository.php';
         $customerRepository = new CustomerRepository();
+        require_once '../DonkeyEvent/Model/Repository/SeatRepository.php';
+        $seatRepository = new SeatRepository();
         $customerRepository->insert([["firstname", PDO::PARAM_STR], ["lastname", PDO::PARAM_STR], ["email", PDO::PARAM_STR]], [$firstname, $name, $email]);
         $customerId=$customerRepository->getLastCustomerId();
+        $customerId=$customerId[0];
         $orderNum = $lastOrder[0]+1;
         foreach ($seats as $seat){
-        $this->reservationRepository->insert([["orderNum", PDO::PARAM_INT], ["seance_id", PDO::PARAM_INT], ["seat_id", PDO::PARAM_INT], ["customer_id", PDO::PARAM_INT]], [$orderNum, $seanceId, $customerId[0], $seat]);
+            $seatRepository->insert([["number", PDO::PARAM_STR], ["customer_id", PDO::PARAM_INT], ["seance_id", PDO::PARAM_INT]], [$seat, $customerId, $seanceId]);
+            $seatId = $seatRepository->getLastId();
+            $seatId = $seatId[0];
+            $this->reservationRepository->insert([["orderNum", PDO::PARAM_INT], ["seance_id", PDO::PARAM_INT], ["seat_id", PDO::PARAM_INT], ["customer_id", PDO::PARAM_INT]], [$orderNum, $seanceId, $seatId ,$customerId]);
         }
         return $orderNum;
     }

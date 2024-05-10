@@ -47,6 +47,17 @@ if (isset($_SESSION['log'])) { ?>
             <?php endforeach; ?>
     </div>
     </ul>
+    <script>
+    $(function() {
+        const availableTags = [
+            <?php foreach ($data as $movie) : ?> "<?= $movie->getName() ?>",
+            <?php endforeach; ?>
+        ];
+        $("#autoComplete").autocomplete({
+            source: availableTags
+        });
+    });
+</script>
     <?php
     include 'Template/footer.html.php';
     ?>
