@@ -24,25 +24,24 @@ Class UserController extends Controller{
             if ($user) {
                 
                 if ($password == $user->getPassword()) {
-                    $_SESSION['log'] = "Bienvenue";
+                    $_SESSION['login'] = $email;
                     header("Location:../home");
+                    var_dump($_SESSION);           
+
                     return;
-                } else 
+                } 
+                else 
                 {
 
                     $_SESSION['errorPassword'] = "Le mot de passe saisi est incorrect";
                 }
-            } else {
-                $_SESSION['errorEmail'] = "L'email saisi est incorrect";
-            }
-        } else {
-            $_SESSION['error'] = "Veuillez saisir l'email et le mot de passe";
+            } 
         }
     }
 
     public function logout()
     {
-        session_destroy();
+session_unset('login');
         header("Location: /");
         exit();
     }

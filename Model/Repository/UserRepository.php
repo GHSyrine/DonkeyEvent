@@ -10,9 +10,9 @@ class UserRepository extends EntityRepository
     {
         parent::__construct($pdo, "user");
     }
-    public function getUserbyEmail($email)
+    public function getUserByEmail($email)
     {
-       $query = "SELECT * FROM cinema.user WHERE email = :email";
+       $query = "SELECT * FROM user WHERE email = :email";
        $statement =$this ->pdo->prepare($query);
        $statement->bindParam(":email", $email, PDO::PARAM_STR);
        $statement ->execute();
