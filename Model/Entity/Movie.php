@@ -10,10 +10,6 @@ class Movie extends Entity {
     private array $categories = [];
     private array $seances = [];
 
-    public function __construct() {
-        $this->image = '/images/image.png';
-    }
-
     public function getName()
     {
         return $this->name;

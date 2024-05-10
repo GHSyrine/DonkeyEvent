@@ -3,22 +3,15 @@
 require_once "Entity.php";
 
 class Reservation extends Entity {
-    private string $order;
+    private string $orderNum;
     private int $seance_id;
     private int $seat_id;
     private int $customer_id;
+    private array $customer; 
+    private array $seance; 
+    private array $seats;
 
-    public function getOrder()
-    {
-        return $this->order;
-    }
 
-    public function setOrder(string $order)
-    {
-        $this->order = $order;
-
-        return $this;
-    }
 
     public function getSeance_id()
     {
@@ -52,6 +45,56 @@ class Reservation extends Entity {
     public function setCustomer_id(int $customer_id)
     {
         $this->customer_id = $customer_id;
+
+        return $this;
+    }
+
+     
+    public function getSeats()
+    {
+        return $this->seats;
+    }
+
+    public function setSeats($seats)
+    {
+        $this->seats = $seats;
+
+        return $this;
+    }
+
+    public function getSeance()
+    {
+        return $this->seance;
+    }
+
+    public function setSeance($seance)
+    {
+        $this->seance = $seance;
+
+        return $this;
+    }
+
+   
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+ 
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getOrderNum()
+    {
+        return $this->orderNum;
+    }
+
+    public function setOrderNum($orderNum)
+    {
+        $this->orderNum = $orderNum;
 
         return $this;
     }
