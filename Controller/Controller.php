@@ -68,4 +68,15 @@ class Controller {
         $this->entityRepository->insertIntoTable($columns, $values);
     }
 
+    /**
+     * @param string $name exemple : "Cinema 1"
+     * @return array exemple : [0 => Cinema, 1 => Cinema, 2 => Cinema]
+     */
+    public function findEntity(string $attribut)
+    {  
+        $valueAttribut = $_POST['search'];
+        $data = $this->entityRepository->findEntityByAttribut($attribut, $valueAttribut);
+        return $data;
+    }
+
 }

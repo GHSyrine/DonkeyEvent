@@ -119,4 +119,22 @@ class EntityRepository
         // Retourner les résultats
         return $statement->fetchAll(PDO::FETCH_CLASS, ucfirst($tables[0]));
     }
+
+    /**
+     * @param string $attribut exemple : "name"
+     * @param string $valueAttribut exemple : "Cinem"
+     * @return array exemple : [0 => Cinema, 1 => Cinema 1, 2 => Cinema 2]
+     */
+
+    public function findEntityByAttribut(string $attribut, $valueAttribut) : array
+    { 
+        $query = "SELECT * FROM $this->table WHERE $attribut LIKE (:attribut)";
+        $statement =$this->pdo->prepare($query);
+        $statement->bindValue(':attribut', "$valueAttribut%");
+        $statement->execute();
+        $results = $statement->fetchAll(PDO::FETCH_CLASS, Movie::class);
+        return $results;
+    }
+
+    
 }

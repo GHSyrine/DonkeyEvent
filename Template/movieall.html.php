@@ -9,11 +9,11 @@ if (isset($_SESSION['log'])) { ?>
     ?>
 
     <h1>Tous les films</h1>
-    <ul>
+    <ul id="menu-film">
         <?php
         $categories = [];
         foreach ($data as $movie) : ?>
-            <li><a href="/movie/one/<?= $movie->getId() ?>">
+            <li><a class="childtitle" href="/movie/one/<?= $movie->getId() ?>">
                     <?= $movie->getName() ?></a>
                 <?php
                 if (!empty($movie->getCategories())) :
@@ -46,6 +46,17 @@ if (isset($_SESSION['log'])) { ?>
         <?php endforeach; ?>
 
     </ul>
+    <script>
+    $(function() {
+        const availableTags = [
+            <?php foreach ($data as $movie) : ?> "<?= $movie->getName() ?>",
+            <?php endforeach; ?>
+        ];
+        $("#autoComplete").autocomplete({
+            source: availableTags
+        });
+    });
+</script>
     <?php
     include 'Template/footer.html.php';
     ?>

@@ -46,12 +46,11 @@ class MovieController extends Controller {
         $this->setSeancesByMovie($movie);
         return $movie;
     }
-    public function find()
 
-    {  
-        $name = $_POST['search'];
-        $data = $this ->movieRepository->findMoviesByName($name);
-        
+    public function find()
+    {
+        $data = parent::findEntity("name");
         return $data;
     }
+
 }

@@ -33,14 +33,4 @@ class MovieRepository extends EntityRepository
         return $seances;
     }
 
-    public function findMoviesByName(string $name) : array
-    { 
-        $query = "SELECT * FROM $this->table WHERE name LIKE (:name)";
-        $statement =$this ->pdo->prepare($query);
-        $statement->bindValue(':name', "$name%", PDO::PARAM_STR);
-        $statement->execute();
-        $results = $statement->fetchAll(PDO::FETCH_CLASS, Movie::class);
-        return $results;
-    }
-
 }

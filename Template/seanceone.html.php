@@ -10,7 +10,6 @@ $placeRestante = $placeTotal - count($data->getSeats());
 <p><?= $placeRestante . " / " . $placeTotal ?></p>
 <hr />
 
-
 <form action="/seance/reserve/<?= $data->getId() ?>" method="POST">
     <?php
     for ($i = 1; $i <= $data->getRoom()->getNumber_row(); $i++) { ?>

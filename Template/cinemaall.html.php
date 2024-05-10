@@ -2,7 +2,17 @@
 include 'Template/header.html.php';
 ?>
 
-<body class="container-body bg-dark">
+<script>
+    $(function() {
+        const availableTags = [
+            <?php foreach ($data as $cinema) : ?> "<?= $cinema->getName() ?>",
+            <?php endforeach; ?>
+        ];
+        $("#autoComplete").autocomplete({
+            source: availableTags
+        });
+    });
+</script>
     <div class="container mt-5">
         <h1 class="mb-4 text-white text-center">Liste des Cinémas</h1>
         <div class="col">
@@ -16,7 +26,6 @@ include 'Template/header.html.php';
                         </div>
                     </div>
                 </div>
-</body>
 <?php endforeach;
             include 'Template/footer.html.php';
 ?>
