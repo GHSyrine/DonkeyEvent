@@ -67,6 +67,8 @@ Class Reservationcontroller extends Controller{
             $seatId = $seatId[0];
             $this->reservationRepository->insert([["orderNum", PDO::PARAM_INT], ["seance_id", PDO::PARAM_INT], ["seat_id", PDO::PARAM_INT], ["customer_id", PDO::PARAM_INT]], [$orderNum, $seanceId, $seatId ,$customerId]);
         }
-        return $orderNum;
+        $data["email"]=$email;
+        $data["orderNum"]=$orderNum;
+        return $data;
     }
 }
