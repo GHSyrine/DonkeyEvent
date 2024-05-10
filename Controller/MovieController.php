@@ -52,5 +52,4 @@ class MovieController extends Controller {
         $data = parent::findEntity("name");
         return $data;
     }
-
 }

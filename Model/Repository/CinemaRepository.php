@@ -15,7 +15,6 @@ class CinemaRepository extends EntityRepository
         $tables = ["room", "cinema"];
         $foreignkeys = ['room.cinema_id = cinema.id'];
         $rooms = $this->getByFilterJoinTables($tables, $foreignkeys, "room.*", "room.cinema_id=$id");
-
         return $rooms;
     }
 }

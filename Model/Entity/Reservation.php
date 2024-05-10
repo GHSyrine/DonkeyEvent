@@ -11,8 +11,6 @@ class Reservation extends Entity {
     private array $seance; 
     private array $seats;
 
-
-
     public function getSeance_id()
     {
         return $this->seance_id;
@@ -49,7 +47,6 @@ class Reservation extends Entity {
         return $this;
     }
 
-     
     public function getSeats()
     {
         return $this->seats;
@@ -73,7 +70,6 @@ class Reservation extends Entity {
 
         return $this;
     }
-
    
     public function getCustomer()
     {
@@ -91,7 +87,7 @@ class Reservation extends Entity {
     {
         return $this->orderNum;
     }
-
+    
     public function setOrderNum($orderNum)
     {
         $this->orderNum = $orderNum;

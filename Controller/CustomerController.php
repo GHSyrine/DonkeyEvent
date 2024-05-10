@@ -13,7 +13,8 @@ Class CustomerController extends Controller{
         $this->customerRepository = $customerRepository;
     }
 
-    public function reserve() {
+    public function reserve() 
+    {
         var_dump($_POST);
     }
 }

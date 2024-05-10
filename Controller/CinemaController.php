@@ -3,8 +3,8 @@
 require_once 'Controller.php';
 require_once '../DonkeyEvent/Model/Repository/CinemaRepository.php';
 
-class CinemaController extends Controller {
-
+class CinemaController extends Controller 
+{
     protected CinemaRepository $cinemaRepository;
     
     public function __construct()
@@ -14,7 +14,8 @@ class CinemaController extends Controller {
         $this->cinemaRepository = $cinemaRepository;
     }
     
-    private function setRoomsByCinema($cinema){
+    private function setRoomsByCinema($cinema)
+    {
         $rooms = $this->cinemaRepository->getRoomsByCinemaId($cinema->getId());
         $cinema->setRooms($rooms);
     }
@@ -27,6 +28,7 @@ class CinemaController extends Controller {
         }      
         return $cinemas;
     }
+    
     public function one(int $id){
         $cinema = parent ::one($id);
         $this->setRoomsByCinema($cinema);

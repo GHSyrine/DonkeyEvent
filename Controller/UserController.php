@@ -2,8 +2,8 @@
 require_once 'Controller.php';
 require_once '../DonkeyEvent/Model/Repository/UserRepository.php';
 
-Class UserController extends Controller{
-
+class UserController extends Controller
+{
     protected UserRepository $userRepository;
 
     public function __construct()
@@ -17,35 +17,26 @@ Class UserController extends Controller{
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
-
             var_dump($_POST);
             $user = $this->userRepository->getUserByEmail($email);
-            var_dump($user);           
+            var_dump($user);
             if ($user) {
-                
                 if ($password == $user->getPassword()) {
-                    $_SESSION['log'] = "Bienvenue";
+                    $_SESSION['login'] = $email;
                     header("Location:../home");
+                    var_dump($_SESSION);
                     return;
-                } else 
-                {
-
+                } else {
                     $_SESSION['errorPassword'] = "Le mot de passe saisi est incorrect";
                 }
-            } else {
-                $_SESSION['errorEmail'] = "L'email saisi est incorrect";
             }
-        } else {
-            $_SESSION['error'] = "Veuillez saisir l'email et le mot de passe";
         }
     }
 
     public function logout()
     {
-        session_destroy();
+        session_unset('login');
         header("Location: /");
         exit();
     }
 }
-
-?>

@@ -13,8 +13,8 @@ Class Reservationcontroller extends Controller{
         $this->reservationRepository = $reservationRepository;
     }
 
-    private function setSeanceAndCustomerAndSeatsByReservation($reservation) {
-
+    private function setSeanceAndCustomerAndSeatsByReservation($reservation) 
+    {
         $infos = $this->reservationRepository->getSeanceAndCustomerAndSeatsByReservationId($reservation->getId());
         $reservation->setSeance($infos[0]);
         $reservation->setCustomer($infos[1]);
@@ -27,7 +27,6 @@ Class Reservationcontroller extends Controller{
         $reservations = parent::all();
         foreach($reservations as $reservation){
             $this->setSeanceAndCustomerAndSeatsByReservation($reservation);
-       
          }
          return $reservation;
     }
