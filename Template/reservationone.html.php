@@ -1,6 +1,5 @@
 <?php
 include 'Template/header.html.php';
-var_dump($data);
 
 ?>
 

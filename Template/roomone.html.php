@@ -2,7 +2,6 @@
 include 'Template/header.html.php';
 // Todo Move
 setlocale(LC_TIME, "fr_FR");
-$room = [];
 $dates = [];
 $movies = [];
 
