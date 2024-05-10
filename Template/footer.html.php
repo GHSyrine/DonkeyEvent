@@ -1,6 +1,6 @@
 </body>
-<footer>
-    <div class="bg-dark">
+<footer class="m-5">
+    <div class="bg-dark sticky-bottom">
         <div class="">
             <h5 class="title text-capitalize text-warning text-center">Pathy Cinéma</h5>
             <p class="icon text-capitalize text-white text-center">retrouvez-nous :&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">

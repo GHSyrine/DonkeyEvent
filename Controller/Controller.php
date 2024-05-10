@@ -65,7 +65,7 @@ class Controller {
      */
 
     public function insert(string $columns, string $values) {
-        $this->entityRepository->insertIntoTable($columns, $values);
+        //$this->entityRepository->insertIntoTable($columns, $values);
     }
 
     /**

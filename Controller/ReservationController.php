@@ -42,20 +42,23 @@ Class Reservationcontroller extends Controller{
         $movieName =$_POST['movieName'];
         $date=$_POST['date'];
         $time=$_POST['time'];
-        $roomTitle=$_POST['roomtitle'];
+        $roomTitle=$_POST['roomTitle'];
         $seats=$_POST['seats'];
-        $name=$_POST['name'];
+        $seats = explode(",",$seats);
+        $name=$_POST['lastname'];
         $firstname=$_POST['firstname'];
         $email=$_POST['email'];
         $seanceId=$_POST['seanceId'];
+        var_dump($seanceId);
         $lastOrder=$this->reservationRepository->getLastOrder();
         require_once '../DonkeyEvent/Model/Repository/CustomerRepository.php';
         $customerRepository = new CustomerRepository();
-        $customerRepository->insertIntoTable("firstname, lastname, email", $firstname. ",". $name.",". $email);
+        $customerRepository->insert([["firstname", PDO::PARAM_STR], ["lastname", PDO::PARAM_STR], ["email", PDO::PARAM_STR]], [$firstname, $name, $email]);
         $customerId=$customerRepository->getLastCustomerId();
+        $orderNum = $lastOrder[0]+1;
         foreach ($seats as $seat){
-        $this->reservationRepository->insertIntoTable('orderNum, seance_id, seat_id, customer_id', $lastOrder+1, $seanceId, $seat, $customerId);
-        return $lastOrder+1;
+        $this->reservationRepository->insert([["orderNum", PDO::PARAM_INT], ["seance_id", PDO::PARAM_INT], ["seat_id", PDO::PARAM_INT], ["customer_id", PDO::PARAM_INT]], [$orderNum, $seanceId, $customerId[0], $seat]);
+        }
+        return $orderNum;
     }
-}
 }

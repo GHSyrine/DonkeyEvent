@@ -1,5 +1,6 @@
 <?php
 include 'Template/header.html.php';
+// Todo Move
 setlocale(LC_TIME, "fr_FR");
 $dates = [];
 $movies = [];
@@ -12,55 +13,62 @@ foreach ($seances as $seance) {
     }
 
     foreach ($data->getMovies() as $movie) {
-       if ($movie->getId() == $seance->getMovie_id()){
+        if ($movie->getId() == $seance->getMovie_id()) {
             $movies[$movie->getId()]['entity'] = $movie;
             $movies[$movie->getId()]['categories'] = $movie->getCategories();
             $movies[$movie->getId()]['seances'][] = $seance;
-       }
+        }
     }
 }
 ?>
-<div class="container mt-5">
-    <h1>Nom de la salle : <?= $data->getTitle() ?></h1>
-    <p>Type : <?= $data->getType() ?></p>
-    <?php
 
-    if (!empty($data->getSeances())) : ?>
-        <h2>Spectacles:</h2>
-        <nav class="mb-8">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <br>
-                    <?php $dates = []; ?>
+<body class="container-body bg-dark">
+    <div class="container mt-5">
+        <h1 class="salle text-center text-white text-capitalize"> <?= $data->getTitle() ?></h1>
+        <h2 class="d-inline type-seance text-capitalize text-white border-left border-right border-4 p-2 border-warning"><?= $data->getType() ?></h2>
+        <div class="d-flex justify-content-center text-center">
+            <?php
+            foreach ($dates as $date) :
+                $dateSplit = explode(" ", $date);
+            ?>
+                <div class="p-3 m-2 text-white border-bottom border-warning">
+                    <div><?= $dateSplit[0]; ?></div>
+                    <div><?= $dateSplit[1]; ?></div>
+                    <div><?= $dateSplit[2]; ?></div>
                 </div>
-                <?php foreach ($data->getSeances() as $seance) : ?>
-                    <?php if (!in_array($seance->getDate(), $dates)) : ?>
-                        <?php $dates[] = $seance->getDate(); ?>
-                    <?= $seance->getDate();
-                    endif; ?>
-                    <br>
-                    <div>
-                        <a href="/seance/one/<?= $seance->getId() ?>"> <?= $seance->getTime(); ?></a>
-                        <br>
-                        <?= $seance->getLangage(); ?>
-                    </div>
-                    <?php $movies = [];
-                    foreach ($data->getMovies() as $movie) : ?>
-                        <?php if ($movie->getId() == $seance->getMovie_id() && !in_array($movie->getId(), $movies)) : ?>
-                            <div>
-                                <?php $movies[] = $movie->getId(); ?>
-                                <a href="/movie/one/<?= $movie->getId() ?>"><?= $movie->getName() ?> </a>
-                                <br>
-                        <?= "Release_date" . $movie->getReleaseDate();
-                        //ajouter l'image
-                        endif;
-                    endforeach; ?>
-                            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php
+        if (!empty($seances)) : ?>
+            <h2 class="title-seance text-capitalize text-white ">Séances:</h2>
+            <?php foreach ($movies as $movie) :
+            ?>
+                <div class="d-flex justify-content-between swiper-container text-white mt-5">
+                    <img class="image-movie" src="<?= $movie['entity']->getImage() ?>">
+                    <div class="">
+                        <a class="title-movie text-capitalize text-white" href="/movie/one/<?= $movie['entity']->getId() ?>"><?= $movie['entity']->getName() ?>
+                        </a>
                         <?php
-                    endforeach;
-                    foreach ($dates as $date) : ?>
-                            <div>
-                                <?= $date; ?>
-                            </div>
-                    <?php endforeach;
-                endif; ?>
+                        foreach ($movie['categories'] as $category) : ?>
+                            <span class="p-1 bg-warning"><?= $category ?></span>
+                        <?php endforeach; ?>
+                        <p class="exit text-capitalize"> date de sortie : <?= $movie['entity']->getReleaseDate() ?></p>
+                    </div>
+                    <div class="">
+                        <?php
+                        foreach ($movie['seances'] as $seance) : ?>
+                            <a href="/seance/one/<?= $seance->getId(); ?>">
+                                <div class="p-1 border">
+                                    <div><?= $seance->getTime() ?></div>
+                                    <div><?= $seance->getLangage() ?></div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+        <?php endforeach;
+        endif;
+        include 'Template/footer.html.php';
+        ?>
+    </div>
+</body>

@@ -72,18 +72,26 @@ class EntityRepository
     }
 
     /**
-     * @param string $columns exemple : "name, address"
-     * @param string $values exemple : "'Cinema 1', '1 rue de Paris'"
-     * @return void
+     * @param array $dataFieldsTypes exemple : [["name", PDO::PARAM_STR], ["address", PDO::PARAM_STR]]
+     * @param array $dataValues exemple : ["Cinema 1", "1 rue de Paris"]
      */
 
-    public function insertIntoTable(string $columns, string $values): void
+    public function insert(array $dataFieldsTypes, array $dataValues) : void
     {
-        $query = "INSERT INTO $this->table (:columns) VALUES (:values)";
-        $statement = $this->pdo->prepare($query);
-        $statement->bindValue(":columns", $columns);
-        $statement->bindValue(":values", $values);
-        $statement->execute();
+        $fields = [];
+        $values = [];
+        foreach ($dataFieldsTypes as $key => $value) {
+            $fields[] = $value[0];
+            $values[] = ":".$value[0];
+        }
+        $fields = implode(", ", $fields);
+        $values = implode(", ", $values);
+        $query = "INSERT INTO $this->table ($fields) VALUES ($values)";
+        $stmt = $this->pdo->prepare($query);
+        foreach ($dataFieldsTypes as $key => $value) {
+            $stmt->bindParam(":".$value[0], $dataValues[$key]);
+        }
+        $stmt->execute();
     }
 
     /**

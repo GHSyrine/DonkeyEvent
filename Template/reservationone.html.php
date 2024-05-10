@@ -16,7 +16,11 @@ foreach ($data->getseats() as $seat) : ?>
 <?= $data->getCustomer() ?>
 <h2>total</h2>
 <?php $price = $data->getPrice();
-$number = count($data->getSeat()); ?>
+$seats = explode(",",$data->getSeat());
+$number = count($seats);
+$total = $number * $price;
+echo $total . "€"; 
+?>
 <h2>numéro de commande</h2>
 <?= $data->getOrder(); ?>
 <?php

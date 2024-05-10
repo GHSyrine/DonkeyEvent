@@ -5,3 +5,8 @@
 .navbar-nav{
     color: white;
 }
+
+.image-movie {
+    width: 350px;
+    height: 100%;
+}

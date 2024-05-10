@@ -5,11 +5,13 @@ include 'Template/header.html.php';
 <body class="bg-dark">
     <section class="container-movie ">
         <h1 class="name text-white text-capitalize text-center"><?= $data->getName() ?></h1>
+        <br>
         <div class="d-flex text-center">
             <img class="image-movie" src="<?= $data->getImage() ?>" alt="image du film">
             <div>
-                <p class="description text-white text-capitalize text-center pl-2"><?= $data->getDescription() ?>
-                </p>
+                <h3 class="description text-white text-capitalize text-center pl-2"><?= $data->getDescription() ?>
+                </h3>
+                <br>
                 <h5 class="text-white text-center text-warning">Catégories du film : </h5>
                 <?php
                 if (!empty($data->getCategories())) :

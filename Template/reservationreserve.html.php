@@ -1,1 +1,1 @@
-<a href="/reservation/one/<?=$orderNum?>"></a>
+<a href="/reservation/one/<?=$data?>"></a>

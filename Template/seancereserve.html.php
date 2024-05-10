@@ -23,6 +23,5 @@ include 'Template/header.html.php';
     </form>
 </div>
 <?php
-            include 'Template/footer.html.php';
-
+include 'Template/footer.html.php';
 ?>
