@@ -43,9 +43,9 @@ if (isset($_SESSION['errorEmail'])) { ?>
                             <input type="password" class="form-control" name="password" id="password">
 
                         </div>
-                        <button type="submit" class="btn btn-primary col-12">Connexion</button>
+                        <button type="submit" class="btn bg-warning col-12">Connexion</button>
                     </form>
-                    <div class="mt-3 text-center">
+                    <div class="mt-3 text-center text-black">
                         <a href="/user/signup">Pas encore de compte ? Inscrivez-vous ici</a>
                     </div>
                 </div>
