@@ -2,11 +2,10 @@
 
 require_once "Entity.php";
 
-class Cinema extends Entity{
+class Cinema extends Entity {
     private string $name;
     private string $address;
     private array $rooms=[];
-
 
     public function getName()
     {

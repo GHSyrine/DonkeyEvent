@@ -9,6 +9,5 @@ class CategoryRepository extends EntityRepository
     {
         parent::__construct($pdo, "category");
     }
-
 }
 

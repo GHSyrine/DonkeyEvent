@@ -21,7 +21,7 @@ include 'Template/header.html.php';
                     endif; ?>
                     <br>
                     <div>
-                        <?= $seance->getTime(); ?>
+                        <a href="/seance/one/<?= $seance->getId() ?>"> <?= $seance->getTime(); ?></a>
                         <br>
                         <?= $seance->getLangage(); ?>
                     </div>

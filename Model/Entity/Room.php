@@ -16,7 +16,6 @@ class Room extends Entity
     {
         return $this->title;
     }
-
    
     public function setTitle($title)
     {
@@ -36,7 +35,7 @@ class Room extends Entity
 
         return $this;
     }
-    // à voir 
+
     public function getType()
     {
         return $this->type;
